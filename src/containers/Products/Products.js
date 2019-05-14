@@ -7,6 +7,8 @@ import { Button, Container, Col, Row, Carousel } from 'react-bootstrap';
 import { IoIosCart } from "react-icons/io";
 import ControlledCarousel from './ControlledCarousel'
 import ProductsSearch from './ProductsSearch'
+import ProductsCard from './ProductsCard'
+
 const startState = { autoAlpha: 0, y: -50 };
 
 
@@ -41,7 +43,7 @@ const products = props => {
       <Col lg={3} >
       <ProductsSearch/>
       </Col>
-      <Col lg={9} style={{'background-color':'blue'}}>456</Col>
+      <Col lg={9} ><ProductsCard/></Col>
       </Row>
     </Container>
     

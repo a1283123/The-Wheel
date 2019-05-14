@@ -5,6 +5,8 @@
   /* background-size: 1920px 1080px; */
 }
 
+
+/* 購物車按鈕 */
 .Button {
   width: 300px;
   color: #ffff;
@@ -20,6 +22,10 @@
 .SearchSideBar {
   margin-top: 200px;
 }
+
+
+/* 幻燈片 */
+
 .Carousel {
   margin-top: 6.05rem;
   background-color: #ccc;
@@ -29,4 +35,40 @@
 }
 .imgHeight {
   height: 400px;
+}
+
+/* 搜尋列表 */
+
+.SearchButton{
+  width: 200px;
+  color: #ffff;
+  background-color: #f52a2a;
+  border: none;
+  opacity: 1;
+  margin-top: 50px;
+}
+
+/* 商品列表 */
+.top{
+  margin-top: 5px;
+  max-width:825px;
+}
+.Space{
+  margin-left: 10rem;
+  font-size: 20px;
+  color: #F52A2A;
+}
+.ButtonSpace{
+  width: 8rem;
+  margin: 5px;
+  background-color: #f52a2a;
+  color: black;
+  border: none;
+}
+.ButtonSpace2{
+  width: 8rem;
+  margin: 5px;
+  background-color: black;
+  color: #fff;
+  border:none;
 }
