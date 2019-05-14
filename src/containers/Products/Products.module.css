@@ -1,0 +1,32 @@
+.Products {
+  /* min-height: 200vh;
+  width: 100%; */
+  /* background: url(../../image/back2.jpg) no-repeat top center; */
+  /* background-size: 1920px 1080px; */
+}
+
+.Button {
+  width: 300px;
+  color: #ffff;
+  background-color: #f52a2a;
+  border: none;
+  opacity: 1;
+  margin-top: 100px;
+}
+.Button:hover {
+  background-color: #f52a2a;
+  opacity: 0.7;
+}
+.SearchSideBar {
+  margin-top: 200px;
+}
+.Carousel {
+  margin-top: 6.05rem;
+  background-color: #ccc;
+
+  /* height: 500px; */
+  width: 100%;
+}
+.imgHeight {
+  height: 400px;
+}

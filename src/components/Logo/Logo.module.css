@@ -1,0 +1,29 @@
+.Logo {
+  display: flex;
+  flex-direction: column;
+  background: url(../../image/logo.svg) no-repeat center center;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 100px;
+  height: 100px;
+}
+
+.LogoText {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+}
+
+.Text{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  flex-direction: column;
+  
+}

@@ -1,0 +1,15 @@
+.Login {
+  position: absolute;
+  right: 30px;
+  top: 20px;
+  letter-spacing: 3px;
+  font-size: 0.8rem;
+  z-index: 11;
+  color: white;
+  transition: 0.5s;
+}
+
+.Login:hover{
+  font-size: 1rem;
+  cursor: pointer;
+}

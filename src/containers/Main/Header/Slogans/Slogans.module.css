@@ -1,0 +1,23 @@
+.Slogans{
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  color: white;
+  font-weight: bold;
+  height: 80vh;
+}
+
+.Slogans > div {
+  width: 50%;
+  flex-grow: 1;
+  margin: 0 auto;
+}
+
+@media (max-width: 992px) {
+  .Slogans{
+    display: flex;
+    flex-direction: row;
+    /* height: 5vh; */
+  }
+}
+
