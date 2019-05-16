@@ -21,7 +21,7 @@ class ProductsSearch extends React.Component {
   
       <Form>
             <Form.Group controlId="formBasicEmail">
-            <Form.Control placeholder="搜尋"  />
+            <Form.Control placeholder="搜尋"  /><IoIosHand/>
               <Form.Label>車種</Form.Label>
               <Form.Control as="select">
                 <option>公路車</option>
