@@ -38,22 +38,22 @@ class ControlledCarousel extends React.Component {
           className={classes.Carousel}
           style={{height:'500px'}}
         >
-          <Carousel.Item>
+          <Carousel.Item style={{'text-align':'center'}}>
           
 
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-           
+             
             <img
-              className="d-block w-100 "
+              className="d-block w-100  "
               className={classes.imgHeight}
               src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png"
               alt="First slide"
-              style={{'object-fit': 'auto'}}
+              style={{'object-fit': 'contain'}}
             />
-            
+               <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+           
           </Carousel.Item>
-          <Carousel.Item>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <Carousel.Item style={{'text-align':'center'}}>
+         
     
         <img
           className="d-block w-100"
@@ -63,13 +63,9 @@ class ControlledCarousel extends React.Component {
           style={{'object-fit': 'contain'}}
           
         />
-       
+         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
       </Carousel.Item>
-      <Carousel.Item>
-          
-
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-      
+      <Carousel.Item style={{'text-align':'center'}}>
         <img
           className="d-block w-100"
           className={classes.imgHeight}
@@ -78,7 +74,7 @@ class ControlledCarousel extends React.Component {
           style={{'object-fit': 'contain'}}
           
         />
-      
+      <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
       </Carousel.Item>
         </Carousel>
         </>

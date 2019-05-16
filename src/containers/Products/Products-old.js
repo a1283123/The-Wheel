@@ -8,7 +8,6 @@ import { IoIosCart } from 'react-icons/io'
 import ControlledCarousel from './ControlledCarousel'
 import ProductsSearch from './ProductsSearch'
 import ProductsCard from './ProductsCard'
-import ControlledCarousel2 from './ControlledCarousel2'
 
 const startState = { autoAlpha: 0, y: -50 }
 
@@ -32,32 +31,6 @@ class products extends React.Component {
   }
 
   render() {
-    let list = null;
-    let  Carousel =null;
-    if(this.state.product){
-      list = this.state.product.map(item => {
-          return(
-            <ProductsCard  style={{border: "1px solid black"}}
-              pic={item.p_photo}
-              name={item.p_name}
-              description={item.p_description}
-              price={item.p_price}
-          />    
-          );
-        
-      })
-    //   Carousel = this.state.product.map(item => {
-    //     return(
-    //       <ControlledCarousel 
-    //         pic={item.p_photo}
-    //         name={item.p_name}
-    //         description={item.p_description}
-    //         price={item.p_price}
-    //     />    
-    //     );
-      
-    // })
-    }
     return (
       <>
         <Transition
@@ -73,10 +46,8 @@ class products extends React.Component {
             })
           }}
         >
-        
           <div>
             <ControlledCarousel />
-            {Carousel}
 
             <div>
               <Button className={classes.Button}>
@@ -90,15 +61,20 @@ class products extends React.Component {
                   <ProductsSearch />
                 </Col>
                 <Col lg={9}>
-                  {/* <ProductsCard product={this.state.product} /> */}
-                  {list}
+                  <ProductsCard product={this.props.product
+                  } />
                 </Col>
               </Row>
             </Container>
+            <div>
+              <h1>123</h1>
+              {this.state.product.map(item => (
+                <li>{item.p_sid}</li>
+              ))}
+            </div>
 
             {this.props.children}
           </div>
-          
         </Transition>
       </>
     )

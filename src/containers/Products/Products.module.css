@@ -28,13 +28,14 @@
 
 .Carousel {
   margin-top: 6.05rem;
-  background-color: #ccc;
+  /* background-color: #ccc; */
 
-  /* height: 500px; */
-  width: 100%;
+  height: 500px;
+  
 }
 .imgHeight {
   height: 400px;
+  width: 800px;
 }
 
 /* 搜尋列表 */
