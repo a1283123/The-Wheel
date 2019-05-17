@@ -1,43 +1,44 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css";
-import RBCarousel from "react-bootstrap-carousel";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import 'react-bootstrap-carousel/dist/react-bootstrap-carousel.css'
+import RBCarousel from 'react-bootstrap-carousel'
+import classes from './Products.module.css'
 
-const styles = { height: 400, width: "100%" };
+const styles = { height: 400, width: '100%' }
 
 class ControlledCarousel2 extends React.PureComponent {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      autoplay: true
-    };
+      autoplay: true,
+    }
   }
   onSelect = (active, direction) => {
-    console.log(`active=${active} && direction=${direction}`);
-  };
+    console.log(`active=${active} && direction=${direction}`)
+  }
   visiableOnSelect = active => {
-    console.log(`visiable onSelect active=${active}`);
-  };
+    console.log(`visiable onSelect active=${active}`)
+  }
   slideNext = () => {
-    this.slider.slideNext();
-  };
+    this.slider.slideNext()
+  }
   slidePrev = () => {
-    this.slider.slidePrev();
-  };
+    this.slider.slidePrev()
+  }
   goToSlide = () => {
-    this.slider.goToSlide(4);
-  };
+    this.slider.goToSlide(4)
+  }
   autoplay = () => {
-    this.setState({ autoplay: !this.state.autoplay });
-  };
+    this.setState({ autoplay: !this.state.autoplay })
+  }
   _changeIcon = () => {
-    let { leftIcon, rightIcon } = this.state;
-    leftIcon = leftIcon ? undefined : <span className="fa fa-glass" />;
-    rightIcon = rightIcon ? undefined : <span className="fa fa-music" />;
-    this.setState({ leftIcon, rightIcon });
-  };
+    let { leftIcon, rightIcon } = this.state
+    leftIcon = leftIcon ? undefined : <span className="fa fa-glass" />
+    rightIcon = rightIcon ? undefined : <span className="fa fa-music" />
+    this.setState({ leftIcon, rightIcon })
+  }
   render() {
-    let { leftIcon, rightIcon } = this.state;
+    let { leftIcon, rightIcon } = this.state
     return (
       <div className="container-fluid">
         <Row>
@@ -60,7 +61,7 @@ class ControlledCarousel2 extends React.PureComponent {
               </Button>
             </div>
           </Col> */}
-          <Col span={12} style={{ paddingTop: "100px" }}>
+          <Col span={12} style={{ paddingTop: '100px' }}>
             <RBCarousel
               animation={true}
               autoplay={this.state.autoplay}
@@ -70,38 +71,36 @@ class ControlledCarousel2 extends React.PureComponent {
               onSelect={this.onSelect}
               ref={r => (this.slider = r)}
               version={4}
+              className={classes.right}
             >
-              <div style={{ height: 600 }}
-               style={{'text-align':'center'}}>
-                <img
-                  // style={{ width: "100%", height: "100%" }}
-                  src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png"
-                />
-                <div className="carousel-caption"
-                style={{color:'#000'}}>Image</div>
+              <div
+                style={{ height: 600 }}
+                style={{ 'text-align': 'center' }}
+                style={{ width: '100%', height: '100%' }}
+              >
+                <img src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png" />
+                <div className="carousel-caption" style={{ color: '#000' }}>
+                  Image
+                </div>
               </div>
-              <div style={{ height: 600 }}
-               style={{'text-align':'center'}}>
-                <img
-                  // style={{ width: "100%", height: "100%" }}
-                  src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png"
-                />
-                
-                <div className="carousel-caption"
-                style={{color:'#000'}}>Image1231321321</div>
+              <div
+                style={{ height: 600 }}
+                style={{ 'text-align': 'center' }}
+                style={{ width: '100%', height: '100%' }}
+              >
+                <img src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png" />
+
+                <div className="carousel-caption" style={{ color: '#000' }}>
+                  Image1231321321
+                </div>
               </div>
               <div style={{ height: 600 }}>
                 <img
-                  style={{ width: "100%", height: "100%" }}
+                  style={{ width: '100%', height: '100%' }}
                   src="https://www.w3schools.com/bootstrap/ny.jpg"
                 />
                 <div className="carousel-caption">Image</div>
               </div>
-              
-             
-             
-             
-              
             </RBCarousel>
           </Col>
           {/* <Col span={12} style={{ marginTop: 20 }}>
@@ -143,28 +142,27 @@ class ControlledCarousel2 extends React.PureComponent {
           </Col> */}
         </Row>
       </div>
-    );
+    )
   }
 }
 
 /**
  *  Boostrap Component
  */
-const Row = props => <div className="row">{props.children}</div>;
+const Row = props => <div className="row">{props.children}</div>
 const Col = props => (
   <div className={`col-${props.span}`} style={props.style}>
     {props.children}
   </div>
-);
+)
 const Button = props => {
-  const { style, bsStyle, onClick } = props;
-  const className = bsStyle ? `btn btn-${bsStyle}` : "btn";
+  const { style, bsStyle, onClick } = props
+  const className = bsStyle ? `btn btn-${bsStyle}` : 'btn'
   return (
     <button style={style} className={className} onClick={onClick}>
       {props.children}
     </button>
-  );
-};
+  )
+}
 
-
-  export default ControlledCarousel2
+export default ControlledCarousel2

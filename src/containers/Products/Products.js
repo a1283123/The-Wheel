@@ -24,6 +24,7 @@ class products extends React.Component {
     fetch('http://localhost:5555/product')
       .then(res => res.json())
       .then(data => {
+        console.log(data)
         this.setState({ product: data })
       })
       .catch(err => {
@@ -32,32 +33,33 @@ class products extends React.Component {
   }
 
   render() {
-    let list = null;
-    let  Carousel =null;
-    if(this.state.product){
+    let list = null
+    let Carousel = null
+    if (this.state.product) {
       list = this.state.product.map(item => {
-          return(
-            <ProductsCard  style={{border: "1px solid black"}}
-              pic={item.p_photo}
-              name={item.p_name}
-              description={item.p_description}
-              price={item.p_price}
-          />    
-          );
-        
+        return (
+          <ProductsCard
+            style={{ border: '1px solid black' }}
+            pic={item.p_photo}
+            name={item.p_name}
+            description={item.p_description}
+            price={item.p_price}
+          />
+        )
       })
+    }
     //   Carousel = this.state.product.map(item => {
-    //     return(
-    //       <ControlledCarousel 
+    //     console.log(item)
+    //     return (
+    //       <ControlledCarousel
     //         pic={item.p_photo}
     //         name={item.p_name}
     //         description={item.p_description}
     //         price={item.p_price}
-    //     />    
-    //     );
-      
-    // })
-    }
+    //       />
+    //     )
+    //   })
+    // }
     return (
       <>
         <Transition
@@ -73,11 +75,10 @@ class products extends React.Component {
             })
           }}
         >
-        
           <div>
+            {/* <ControlledCarousel /> */}
+            {/* {Carousel} */}
             <ControlledCarousel />
-            {Carousel}
-
             <div>
               <Button className={classes.Button}>
                 <IoIosCart size={25} />
@@ -98,7 +99,6 @@ class products extends React.Component {
 
             {this.props.children}
           </div>
-          
         </Transition>
       </>
     )

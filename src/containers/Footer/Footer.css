@@ -14,7 +14,7 @@
 
 .left {
   font-size: 1.2rem;
-  width: 50%;
+  width: 20%;
   display: flex;
   justify-content: flex-end;
 }
@@ -22,5 +22,17 @@
 .right {
   font-size: 0.8rem;
   margin-left: 20px;
-  width: 50%;
+  width: 20%;
+}
+.left1 {
+  font-size: 1.2rem;
+  width: 20%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.right1 {
+  font-size: 0.8rem;
+  margin-left: 20px;
+  width: 20%;
 }

@@ -38,8 +38,8 @@ const upload = multer({ dest: 'tmp_uploads/' })
 
 var mysqlConnection = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
-  password: '',
+  user: 'wang',
+  password: 'admin',
   database: 'the_wheel',
   multipleStatements: true,
 })
@@ -55,6 +55,13 @@ mysqlConnection.connect(err => {
 //拿到所有會員資料
 app.get('/product', (req, res) => {
   mysqlConnection.query('SELECT*FROM prouduct', (err, rows, fields) => {
+    if (!err) res.send(rows)
+    else console.log(err)
+  })
+})
+
+app.get('/prouductcarousel', (req, res) => {
+  mysqlConnection.query('SELECT*FROM prouductcarousel', (err, rows, fields) => {
     if (!err) res.send(rows)
     else console.log(err)
   })

@@ -9,7 +9,6 @@ import { Button, Col } from 'react-bootstrap'
 // import ControlledCarousel from './ControlledCarousel'
 // import { IoIosHand } from 'react-icons/io'
 
-
 class ProductsCard extends React.Component {
   constructor(props) {
     super(props)
@@ -56,12 +55,12 @@ class ProductsCard extends React.Component {
               />
             </Col>
             <Col md={7}>
-              <Card.Title>{this.props.name}</Card.Title>  
-              <Card.Text>
-                {this.props.description}
-              </Card.Text>
+              <Card.Title>{this.props.name}</Card.Title>
+              <Card.Text>{this.props.description}</Card.Text>
               <Card.Body>
-                <Card.Text className={classes.Space}>NT{this.props.price}</Card.Text>
+                <Card.Text className={classes.Space}>
+                  NT{this.props.price}
+                </Card.Text>
                 <Button variant="primary" className={classes.ButtonSpace}>
                   加入收藏
                 </Button>
@@ -98,7 +97,6 @@ class ProductsCard extends React.Component {
             </Col>
           </div>
         </Card> */}
-        
       </>
     )
   }
