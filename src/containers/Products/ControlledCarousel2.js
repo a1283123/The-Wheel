@@ -42,25 +42,7 @@ class ControlledCarousel2 extends React.PureComponent {
     return (
       <div className="container-fluid">
         <Row>
-          {/* <Col span={12} style={{ paddingTop: "20px" }}>
-            <div className="btn-group">
-              <Button bsStyle="primary" onClick={this._changeIcon}>
-                Change Icon
-              </Button>
-              <Button bsStyle="primary" onClick={this.slidePrev}>
-                Slider prev
-              </Button>
-              <Button bsStyle="primary" onClick={this.slideNext}>
-                Slider next
-              </Button>
-              <Button bsStyle="primary" onClick={this.goToSlide}>
-                Go to slide 4
-              </Button>
-              <Button bsStyle="primary" onClick={this.autoplay}>
-                {this.state.autoplay ? "Stop Autoplay" : "Start Autoplay"}
-              </Button>
-            </div>
-          </Col> */}
+          
           <Col span={12} style={{ paddingTop: '100px' }}>
             <RBCarousel
               animation={true}
@@ -103,43 +85,7 @@ class ControlledCarousel2 extends React.PureComponent {
               </div>
             </RBCarousel>
           </Col>
-          {/* <Col span={12} style={{ marginTop: 20 }}>
-            <RBCarousel
-              version={4}
-              autoplay={this.state.autoplay}
-              pauseOnVisibility={true}
-              onSelect={this.visiableOnSelect}
-              slideshowSpeed={2000}
-            >
-              <div style={{ ...styles, backgroundColor: "lightblue" }}>
-                <div className="carousel-center">
-                  <div>This carsouel won't change if invisiable</div>
-                  <div>pauseOnVisibility = true</div>
-                </div>
-                <div className="carousel-center"> </div>
-                <div className="carousel-caption">Text</div>
-              </div>
-              <div style={{ ...styles, backgroundColor: "lightblue" }}>
-                <div className="carousel-center">
-                  <div>This carsouel won't change if invisiable</div>
-                  <div>pauseOnVisibility = true</div>
-                </div>
-                <div className="carousel-caption">Text</div>
-              </div>
-            </RBCarousel>
-          </Col> */}
-          {/* <Col span={12} style={{ paddingTop: "20px" }}>
-            <RBCarousel version={4} className="carousel-fade">
-              <div style={{ ...styles, backgroundColor: "darkcyan" }}>
-                <div className="carousel-center">This carsouel transition is fade</div>
-                <div className="carousel-caption">Text</div>
-              </div>
-              <div style={{ ...styles, backgroundColor: "yellowgreen" }}>
-                <span className="carousel-center">This carsouel transition is fade</span>
-                <div className="carousel-caption">Text</div>
-              </div>
-            </RBCarousel>
-          </Col> */}
+          
         </Row>
       </div>
     )

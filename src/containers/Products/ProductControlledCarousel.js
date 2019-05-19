@@ -3,7 +3,7 @@ import classes from './Products.module.css'
 import { Button, Container, Col, Row, Carousel } from 'react-bootstrap'
 import { Link, withRouter } from 'react-router-dom'
 
-class ControlledCarousel extends React.Component {
+class ProductControlledCarousel extends React.Component {
   constructor(props, context) {
     super(props, context)
 
@@ -40,17 +40,17 @@ class ControlledCarousel extends React.Component {
     return (
       <>
         <div>
-          <h1 className={classes.CarouselTitle}>本月推薦商品</h1>
+          <h4 className={classes.CarouselTitle2}>推薦濕品</h4>
         </div>
         <Carousel
           activeIndex={index}
           direction={direction}
           onSelect={this.handleSelect}
           className={classes.Carousel}
-          style={{ height: '500px' }}
+          // style={{ 'margin-bottom':'15rem' }}
         >
           {this.state.product.map(item => (
-            <Carousel.Item style={{ 'text-align': 'center' }}>
+            <Carousel.Item style={{ 'text-align': 'center' }} className={classes.ProductControlledCarousel}>
               <Link to="/products">
                         <img  className="d-block w-100  "
                               className={classes.imgHeight}
@@ -86,4 +86,4 @@ class ControlledCarousel extends React.Component {
   }
 }
 
-export default ControlledCarousel
+export default ProductControlledCarousel

@@ -38,8 +38,8 @@ const upload = multer({ dest: 'tmp_uploads/' })
 
 var mysqlConnection = mysql.createConnection({
   host: 'localhost',
-  user: 'wang',
-  password: 'admin',
+  user: 'root',
+  password: '',
   database: 'the_wheel',
   multipleStatements: true,
 })
@@ -52,7 +52,7 @@ mysqlConnection.connect(err => {
     )
 })
 
-//拿到所有會員資料
+//拿到所有商品資料
 app.get('/product', (req, res) => {
   mysqlConnection.query('SELECT*FROM prouduct', (err, rows, fields) => {
     if (!err) res.send(rows)
@@ -66,6 +66,20 @@ app.get('/prouductcarousel', (req, res) => {
     else console.log(err)
   })
 })
+
+
+ 
+//拿到一個商品的資料
+app.get('/product/:id',(req,res)=>{
+  mysqlConnection.query('SELECT*FROM prouduct WHERE p_sid = ?',[req.params.id],(err,rows,fields)=>{
+      if(!err)
+     res.send(rows);
+      else
+      console.log(err);
+  })
+});
+
+
 
 app.listen(5555, () => {
   console.log('server running')
