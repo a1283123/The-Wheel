@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import 'react-bootstrap-carousel/dist/react-bootstrap-carousel.css'
 import RBCarousel from 'react-bootstrap-carousel'
-import classes from './Products.module.css'
+import classes from '../Products/Products.module.css'
 
 const styles = { height: 400, width: '100%' }
 

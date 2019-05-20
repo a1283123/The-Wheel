@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from './Products.module.css'
+import classes from '../Products.module.css'
 import { Button, Container, Col, Row, Carousel } from 'react-bootstrap'
 import { Link, withRouter } from 'react-router-dom'
 

@@ -68,6 +68,19 @@ app.get('/prouductcarousel', (req, res) => {
 })
 
 
+
+app.get('/member/:id',(req,res)=>{
+  mysqlConnection.query('SELECT*FROM member WHERE m_sid = ?',[req.params.id],(err,rows,fields)=>{
+      // for(let s in rows){
+      //     rows[s].m_birthday2=moment(rows[s].m_birthday).format('YYYY-MM-DD');
+      // }
+      if(!err)
+     res.send(rows);
+      else
+      console.log(err);
+  })
+});
+
  
 //拿到一個商品的資料
 app.get('/product/:id',(req,res)=>{

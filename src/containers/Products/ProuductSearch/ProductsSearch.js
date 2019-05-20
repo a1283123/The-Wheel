@@ -1,13 +1,13 @@
 
 import Card from 'react-bootstrap/Card'
 import React from "react";
-import classes from "./Products.module.css";
+import classes from "../Products.module.css";
 import { TweenMax } from "gsap/all";
 import { Transition } from "react-transition-group";
-import ContentPage from "../ContentPage/ContentPage";
+import ContentPage from "../../ContentPage/ContentPage";
 import { Button, Container, Col, Row, Carousel,Form } from 'react-bootstrap';
 import { IoIosCart } from "react-icons/io";
-import ControlledCarousel from './ControlledCarousel'
+// import ControlledCarousel from './ControlledCarousel'
 import { IoIosHand } from "react-icons/io";
 
 

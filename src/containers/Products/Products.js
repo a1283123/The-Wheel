@@ -5,10 +5,10 @@ import { Transition } from 'react-transition-group'
 import ContentPage from '../ContentPage/ContentPage'
 import { Button, Container, Col, Row, Carousel } from 'react-bootstrap'
 import { IoIosCart } from 'react-icons/io'
-import ControlledCarousel from './ControlledCarousel'
-import ProductsSearch from './ProductsSearch'
+import ControlledCarousel from '../Products/ConteolledCarousel/ControlledCarousel'
+import ProductsSearch from '../Products/ProuductSearch/ProductsSearch'
 import ProductsCard from './ProductsCard'
-import ControlledCarousel2 from './ControlledCarousel2'
+
 
 const startState = { autoAlpha: 0, y: -50 }
 
@@ -26,6 +26,7 @@ class products extends React.Component {
       .then(data => {
         console.log(data)
         this.setState({ product: data })
+        // console.log(this.state.product[0].p_name)
       })
       .catch(err => {
         console.log(err)
@@ -44,22 +45,13 @@ class products extends React.Component {
             name={item.p_name}
             description={item.p_description}
             price={item.p_price}
+            p_sid={item.p_sid}
+            onClick={()=>{this.SingleProduct(item["p_sid"])}}
           />
         )
       })
     }
-    //   Carousel = this.state.product.map(item => {
-    //     console.log(item)
-    //     return (
-    //       <ControlledCarousel
-    //         pic={item.p_photo}
-    //         name={item.p_name}
-    //         description={item.p_description}
-    //         price={item.p_price}
-    //       />
-    //     )
-    //   })
-    // }
+   
     return (
       <>
         <Transition
@@ -91,7 +83,7 @@ class products extends React.Component {
                   <ProductsSearch />
                 </Col>
                 <Col lg={9}>
-                  {/* <ProductsCard product={this.state.product} /> */}
+                  
                   {list}
                 </Col>
               </Row>
@@ -107,45 +99,3 @@ class products extends React.Component {
 
 export default products
 
-// const products = props => {
-//   return (
-//     <>
-
-//     <Transition
-//     unmountOnExit
-//     in={props.show}
-//     timeout={1000}
-//     onEnter={node => TweenMax.set(node, startState)}
-//     addEndListener={ (node, done) => {
-//       TweenMax.to(node, 0.5, {
-//         autoAlpha: props.show ? 1 : 0,
-//         y: props.show ? 0 : 50,
-//         onComplete: done
-//       });
-//     }}
-//   >
-
-//   <div >
-
-//   <ControlledCarousel />
-
-//     <div>
-//     <Button className={classes.Button} ><IoIosCart  size={25}/>購物車</Button>
-//     </div>
-//     <Container className={classes.SearchSideBar}>
-//     <Row>
-//       <Col lg={3} >
-//       <ProductsSearch/>
-//       </Col>
-//       <Col lg={9} ><ProductsCard/></Col>
-//       </Row>
-//     </Container>
-
-//   {props.children}
-//   </div>
-//   </Transition>
-//   </>
-//   )
-// };
-
-// export default products;
