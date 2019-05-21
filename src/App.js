@@ -7,10 +7,10 @@ import Group from './containers/Group/Group'
 import Coach from './containers/Coach/Coach'
 import News from './containers/News/News'
 import Products from './containers/Products/Products'
-import SingleProduct from './containers/Products/ProductSingle/SingleProduct'
+import SingleProduct from './containers/Products/ProductSingle/ProductSinglePage'
 import Footer from './containers/Footer/Footer'
 import { isLoading } from './store/loadingActions'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route,Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import './App.css'
 
@@ -21,7 +21,7 @@ const routes = [
   { path: '/coach', name: 'Contact', Component: Coach },
   { path: '/news', name: 'Contact', Component: News },
   { path: '/products', name: 'Contact', Component: Products },
-  { path: `/products2/`, Component: SingleProduct },
+  { path: `/products2/:id`, Component: SingleProduct },
 ]
 
 class App extends Component {
@@ -42,12 +42,14 @@ class App extends Component {
       <Router>
         <div>
           <Nav {...this.props} />
+          <Switch>
           <Route path="/" exact component={Main} />
           {routes.map(({ path, Component }) => (
-            <Route key={path} path={path}>
+            <Route exact key={path} path={path}>
               {({ match }) => <Component show={match !== null} />}
             </Route>
           ))}
+          </Switch>
           <Footer />
         </div>
       </Router>

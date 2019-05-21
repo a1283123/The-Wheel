@@ -10,7 +10,7 @@ import ProductControlledCarousel from '../Products/ProductControlledCarousel'
 // import ControlledCarousel2 from './ControlledCarousel2'
 import SingleImg from '../Products/ProductSingle/SingleImg'
 import SingleSiderBar from '../Products/ProductSingle/SingleSiderBar'
-import SingleProductList from '../Products/ProductSingle/SingleList'
+import SingleProductList from '../Products/ProductSingle/SingleProductList'
 const startState = { autoAlpha: 0, y: -50 }
 
 class ProductSinglePage extends React.Component {

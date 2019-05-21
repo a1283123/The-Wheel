@@ -9,35 +9,72 @@ import ProductControlledCarousel from '../ProductControlledCarousel'
 // import ControlledCarousel2 from './ControlledCarousel2'
 import SingleImg from './SingleImg'
 import SingleSiderBar from './SingleSiderBar'
-import SingleProductList from './SingleList'
+import SingleProductList from './SingleProductList'
+import {withRouter} from 'react-router-dom'
 const startState = { autoAlpha: 0, y: -50 }
 
 class ProductSinglePage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      p_sid: this.props.p_sid,
+      id:null,
+     product:null,
     }
   }
 
-  componentDidMount() {
-    let p_sid = this.props.p_sid
+  componentDidUpdate(prevporps,prevState) {
+    console.log(this.props)
+      if(!this.state.product ){
+    let p_sid = this.state.id
 
     // const newproject = this.state.product[0]
     fetch(`http://localhost:5555/product/${p_sid}`)
       .then(res => res.json())
       .then(data => {
-        // console.log(data)
-        this.setState({ product: data })
+        this.setState({ product: data[0] })
       })
       .catch(err => {
         console.log(err)
-      })
+      })}
+      
   }
 
+  componentDidMount(){
+    let p_sid = this.props.history.location.pathname.slice(11)
+    console.log("mount")
+    this.setState(
+      {
+        id:p_sid,
+      })
+    //  fetch(`http://localhost:5555/product/${p_sid}`)
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     this.setState({ product: data[0] })
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //   })
+  }
+  
+//把值傳進去
+
   render() {
-    const aa = this.props.p_sid
-    console.log(aa)
+      let list2 =null
+      let list3 = null
+      if(this.state.product){
+        console.log(this.state.product)
+        list2 =  <SingleSiderBar
+        
+        product={this.state.product}
+      />
+      list3= <SingleProductList 
+      
+      product={this.state.product}
+      />
+      }
+    
+  
+  
     return (
       <>
         <Transition
@@ -61,8 +98,9 @@ class ProductSinglePage extends React.Component {
                 加入收藏
               </Button>
             </div>
-            <SingleSiderBar />
-            <SingleProductList />
+            {/* <SingleSiderBar /> */}
+              {list2}
+              {list3}
             <ProductControlledCarousel />
 
             {this.props.children}
@@ -73,4 +111,4 @@ class ProductSinglePage extends React.Component {
   }
 }
 
-export default ProductSinglePage
+export default withRouter(ProductSinglePage)

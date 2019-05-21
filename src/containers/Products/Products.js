@@ -108,45 +108,4 @@ class products extends React.Component {
 
 export default products
 
-// const products = props => {
-//   return (
-//     <>
 
-//     <Transition
-//     unmountOnExit
-//     in={props.show}
-//     timeout={1000}
-//     onEnter={node => TweenMax.set(node, startState)}
-//     addEndListener={ (node, done) => {
-//       TweenMax.to(node, 0.5, {
-//         autoAlpha: props.show ? 1 : 0,
-//         y: props.show ? 0 : 50,
-//         onComplete: done
-//       });
-//     }}
-//   >
-
-//   <div >
-
-//   <ControlledCarousel />
-
-//     <div>
-//     <Button className={classes.Button} ><IoIosCart  size={25}/>購物車</Button>
-//     </div>
-//     <Container className={classes.SearchSideBar}>
-//     <Row>
-//       <Col lg={3} >
-//       <ProductsSearch/>
-//       </Col>
-//       <Col lg={9} ><ProductsCard/></Col>
-//       </Row>
-//     </Container>
-
-//   {props.children}
-//   </div>
-//   </Transition>
-//   </>
-//   )
-// };
-
-// export default products;

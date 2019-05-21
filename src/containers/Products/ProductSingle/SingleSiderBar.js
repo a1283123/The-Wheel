@@ -19,7 +19,7 @@ class SingleSiderBar extends React.Component {
   render() {
     // console.log('product', a[0])
     //console.log(a[0].quantity)
-
+    console.log(this.props.product.p_sid)
     return (
       <>
         <Container fluid>
@@ -32,17 +32,17 @@ class SingleSiderBar extends React.Component {
                 </h5>
               </div>
               <div className={classes.productSideBarGenre}>
-                <p className={classes.productSideBarGenre2}>p_genre/p_genre2</p>
+                <p className={classes.productSideBarGenre2}>{this.props.product.p_genre}/{this.props.product.p_genre2}</p>
               </div>
               <div className={classes.productSideBarBarnd}>
-                <p className={classes.productSideBarBarnd2}>p_brand</p>
+                <p className={classes.productSideBarBarnd2}> {this.props.product.p_brand}</p>
               </div>
             </Col>
             <Col sm={8}>
               <div className={classes.productSideBarPrice}>
                 <Col className={classes.productSideBarPrice2}>
-                  <h1>NT:p_price</h1>
-                  <p>p_name</p>
+                  <h1>NT:{this.props.product.p_price}</h1>
+                  <p>{this.props.product.p_name}</p>
                 </Col>
                 <Col sm={4} className={classes.productSideBarPrice3}>
                   <Form.Control style={{ width: '8rem' }} as="select">
