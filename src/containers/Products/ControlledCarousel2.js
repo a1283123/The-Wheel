@@ -4,7 +4,7 @@ import 'react-bootstrap-carousel/dist/react-bootstrap-carousel.css'
 import RBCarousel from 'react-bootstrap-carousel'
 import classes from '../Products/Products.module.css'
 
-const styles = { height: 400, width: '100%' }
+// const styles = { height: 400, width: '100%' }
 
 class ControlledCarousel2 extends React.PureComponent {
   constructor(props) {
@@ -40,7 +40,7 @@ class ControlledCarousel2 extends React.PureComponent {
   render() {
     let { leftIcon, rightIcon } = this.state
     return (
-      <div className="container-fluid">
+      <div>
         <Row>
           <Col span={12} style={{ paddingTop: '100px' }}>
             <RBCarousel
@@ -54,40 +54,28 @@ class ControlledCarousel2 extends React.PureComponent {
               version={4}
               className={classes.right}
             >
-              <div
-                style={{ height: 600 }}
-                style={{ 'text-align': 'center' }}
-                style={{ width: '100%', height: '100%' }}
-              >
+              <div style={{ width: '100%', height: '100%' }}>
                 <img
                   src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png"
                   alt=""
                 />
-                <div className="carousel-caption" style={{ color: '#000' }}>
-                  Image
-                </div>
+                <div style={{ color: '#000' }}>Image</div>
               </div>
-              <div
-                style={{ height: 600 }}
-                style={{ 'text-align': 'center' }}
-                style={{ width: '100%', height: '100%' }}
-              >
+              <div style={{ width: '100%', height: '100%' }}>
                 <img
                   src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png"
                   alt=""
                 />
 
-                <div className="carousel-caption" style={{ color: '#000' }}>
-                  Image1231321321
-                </div>
+                <div style={{ color: '#000' }}>Image1231321321</div>
               </div>
-              <div style={{ height: 600 }}>
+              <div>
                 <img
                   style={{ width: '100%', height: '100%' }}
                   src="https://www.w3schools.com/bootstrap/ny.jpg"
                   alt=""
                 />
-                <div className="carousel-caption">Image</div>
+                <div>Image</div>
               </div>
             </RBCarousel>
           </Col>
@@ -106,14 +94,14 @@ const Col = props => (
     {props.children}
   </div>
 )
-const Button = props => {
-  const { style, bsStyle, onClick } = props
-  const className = bsStyle ? `btn btn-${bsStyle}` : 'btn'
-  return (
-    <button style={style} className={className} onClick={onClick}>
-      {props.children}
-    </button>
-  )
-}
+// const Button = props => {
+//   const { style, bsStyle, onClick } = props
+//   const className = bsStyle ? `btn btn-${bsStyle}` : 'btn'
+//   return (
+//     <button style={style} className={className} onClick={onClick}>
+//       {props.children}
+//     </button>
+//   )
+// }
 
 export default ControlledCarousel2
