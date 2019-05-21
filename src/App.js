@@ -7,6 +7,7 @@ import Group from './containers/Group/Group'
 import Coach from './containers/Coach/Coach'
 import News from './containers/News/News'
 import Products from './containers/Products/Products'
+import SingleProduct from './containers/Products/ProductSingle/SingleProduct'
 import Footer from './containers/Footer/Footer'
 import { isLoading } from './store/loadingActions'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
@@ -20,6 +21,7 @@ const routes = [
   { path: '/coach', name: 'Contact', Component: Coach },
   { path: '/news', name: 'Contact', Component: News },
   { path: '/products', name: 'Contact', Component: Products },
+  { path: `/products2/`, Component: SingleProduct },
 ]
 
 class App extends Component {

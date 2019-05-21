@@ -38,8 +38,8 @@ const upload = multer({ dest: 'tmp_uploads/' })
 
 var mysqlConnection = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
-  password: '',
+  user: 'wang',
+  password: 'admin',
   database: 'the_wheel',
   multipleStatements: true,
 })
@@ -67,32 +67,31 @@ app.get('/prouductcarousel', (req, res) => {
   })
 })
 
-
-
-app.get('/member/:id',(req,res)=>{
-  mysqlConnection.query('SELECT*FROM member WHERE m_sid = ?',[req.params.id],(err,rows,fields)=>{
+app.get('/member/:id', (req, res) => {
+  mysqlConnection.query(
+    'SELECT*FROM member WHERE m_sid = ?',
+    [req.params.id],
+    (err, rows, fields) => {
       // for(let s in rows){
       //     rows[s].m_birthday2=moment(rows[s].m_birthday).format('YYYY-MM-DD');
       // }
-      if(!err)
-     res.send(rows);
-      else
-      console.log(err);
-  })
-});
+      if (!err) res.send(rows)
+      else console.log(err)
+    }
+  )
+})
 
- 
 //拿到一個商品的資料
-app.get('/product/:id',(req,res)=>{
-  mysqlConnection.query('SELECT*FROM prouduct WHERE p_sid = ?',[req.params.id],(err,rows,fields)=>{
-      if(!err)
-     res.send(rows);
-      else
-      console.log(err);
-  })
-});
-
-
+app.get('/product/:id', (req, res) => {
+  mysqlConnection.query(
+    'SELECT*FROM prouduct WHERE p_sid = ?',
+    [req.params.id],
+    (err, rows, fields) => {
+      if (!err) res.send(rows)
+      else console.log(err)
+    }
+  )
+})
 
 app.listen(5555, () => {
   console.log('server running')

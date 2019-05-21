@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+// import ReactDOM from 'react-dom'
 import 'react-bootstrap-carousel/dist/react-bootstrap-carousel.css'
 import RBCarousel from 'react-bootstrap-carousel'
 import classes from '../Products/Products.module.css'
@@ -42,7 +42,6 @@ class ControlledCarousel2 extends React.PureComponent {
     return (
       <div className="container-fluid">
         <Row>
-          
           <Col span={12} style={{ paddingTop: '100px' }}>
             <RBCarousel
               animation={true}
@@ -60,7 +59,10 @@ class ControlledCarousel2 extends React.PureComponent {
                 style={{ 'text-align': 'center' }}
                 style={{ width: '100%', height: '100%' }}
               >
-                <img src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png" />
+                <img
+                  src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png"
+                  alt=""
+                />
                 <div className="carousel-caption" style={{ color: '#000' }}>
                   Image
                 </div>
@@ -70,7 +72,10 @@ class ControlledCarousel2 extends React.PureComponent {
                 style={{ 'text-align': 'center' }}
                 style={{ width: '100%', height: '100%' }}
               >
-                <img src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png" />
+                <img
+                  src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png"
+                  alt=""
+                />
 
                 <div className="carousel-caption" style={{ color: '#000' }}>
                   Image1231321321
@@ -80,12 +85,12 @@ class ControlledCarousel2 extends React.PureComponent {
                 <img
                   style={{ width: '100%', height: '100%' }}
                   src="https://www.w3schools.com/bootstrap/ny.jpg"
+                  alt=""
                 />
                 <div className="carousel-caption">Image</div>
               </div>
             </RBCarousel>
           </Col>
-          
         </Row>
       </div>
     )

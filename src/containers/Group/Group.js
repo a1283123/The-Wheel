@@ -3,7 +3,7 @@ import classes from '../Products/Products.module.css'
 import { TweenMax } from 'gsap/all'
 import { Transition } from 'react-transition-group'
 import ContentPage from '../ContentPage/ContentPage'
-import { Button, Container, Col, Row, Carousel , Form} from 'react-bootstrap'
+import { Button, Container, Col, Row, Carousel, Form } from 'react-bootstrap'
 import { IoIosHeart, IoIosCart } from 'react-icons/io'
 import ProductsSearch from '../Products/ProuductSearch/ProductsSearch'
 import ProductsCard from '../Products/ProductsCard'
@@ -11,22 +11,22 @@ import ProductControlledCarousel from '../Products/ProductControlledCarousel'
 // import ControlledCarousel2 from './ControlledCarousel2'
 import SingleImg from '../Products/ProductSingle/SingleImg'
 import SingleSiderBar from '../Products/ProductSingle/SingleSiderBar'
-import SingleProductList from '../Products/ProductSingle/SingleProductList'
+import SingleProductList from '../Products/ProductSingle/SingleList'
 const startState = { autoAlpha: 0, y: -50 }
 
-class group extends React.Component {
+class ProductSinglePage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       product: [],
-      p_name:[],
-      id:'',
+      p_name: [],
+      id: '',
     }
   }
 
   // componentDidMount() {
-    // let id = this.props.match.params.id;
-    // console.log(id)
+  // let id = this.props.match.params.id;
+  // console.log(id)
   //   const newproject = this.state.product[0]
   //   fetch(`http://localhost:5555/product/${id}`)
   //     .then(res => res.json())
@@ -52,8 +52,6 @@ class group extends React.Component {
   // }
 
   render() {
-    
-   
     return (
       <>
         <Transition
@@ -69,27 +67,24 @@ class group extends React.Component {
             })
           }}
         >
-        
-          <div >
-            <SingleImg/>
+          <div>
+            <SingleImg />
             <div>
               <Button className={classes.productButton}>
                 <IoIosHeart size={25} />
                 加入收藏
               </Button>
             </div>
-            <SingleSiderBar/>
-           <SingleProductList/>
+            <SingleSiderBar />
+            <SingleProductList />
             <ProductControlledCarousel />
 
-
             {this.props.children}
-              </div>
+          </div>
         </Transition>
       </>
     )
   }
 }
 
-export default group
-
+export default ProductSinglePage

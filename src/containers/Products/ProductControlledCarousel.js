@@ -1,7 +1,7 @@
 import React from 'react'
 import classes from './Products.module.css'
-import { Button, Container, Col, Row, Carousel } from 'react-bootstrap'
-import { Link, withRouter } from 'react-router-dom'
+import { Carousel } from 'react-bootstrap'
+// import { Link, withRouter } from 'react-router-dom'
 
 class ProductControlledCarousel extends React.Component {
   constructor(props, context) {
@@ -50,22 +50,18 @@ class ProductControlledCarousel extends React.Component {
           // style={{ 'margin-bottom':'15rem' }}
         >
           {this.state.product.map(item => (
-            <Carousel.Item style={{ 'text-align': 'center' }} className={classes.ProductControlledCarousel}>
-              <Link to="/products">
-                        <img  className="d-block w-100  "
-                              className={classes.imgHeight}
-                              src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png"
-                              alt="First slide"
-                              style={{ 'object-fit': 'contain' }}
-                            />
-                      </Link>
-              {/* <img
+            <Carousel.Item
+              style={{ textAlign: 'center' }}
+              className={classes.ProductControlledCarousel}
+            >
+              <img
                 className="d-block w-100  "
                 className={classes.imgHeight}
                 src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png"
                 alt="First slide"
-                style={{ 'object-fit': 'contain' }}
-              /> */}
+                style={{ objectFit: 'contain' }}
+              />
+
               <p>{item.p_name}</p>
             </Carousel.Item>
           ))}

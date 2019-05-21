@@ -1,11 +1,12 @@
 import Card from 'react-bootstrap/Card'
 import React from 'react'
 import classes from './Products.module.css'
+import { Link } from 'react-router-dom'
 // import { TweenMax } from 'gsap/all'
 // import { Transition } from 'react-transition-group'
 // import ContentPage from '../ContentPage/ContentPage'
 import { Button, Col } from 'react-bootstrap'
-import { link } from 'fs';
+// import { Link } from 'fs';
 // import { IoIosCart } from 'react-icons/io'
 // import ControlledCarousel from './ControlledCarousel'
 // import { IoIosHand } from 'react-icons/io'
@@ -13,36 +14,29 @@ import { link } from 'fs';
 class ProductsCard extends React.Component {
   constructor(props) {
     super(props)
-    const product = this.props.product
-    this.state = {
-
-    }
+    // const product = this.props.product
+    this.state = {}
   }
-
 
   handleClick = () => {
     console.log(this.props.p_sid)
     this.setState({
-      p_sid : this.props.p_sid
+      p_sid: this.props.p_sid,
     })
-    
   }
 
-  
   render() {
-    const a = this.props.product
-    // console.log('product', a[0])
-    //console.log(a[0].quantity)
-
+    // const a = this.props.product
+    const single = this.props.p_sid
     return (
       <>
-       
         <Card className={classes.top}>
           <div className="row">
             <Col md={4}>
               <Card.Img
                 variant="top"
                 src="https://attach.mobile01.com/attach/201809/mobile01-cce4664dba207264b6b9eb925ca3694e.png"
+                alt=""
               />
             </Col>
             <Col md={7}>
@@ -55,14 +49,19 @@ class ProductsCard extends React.Component {
                 <Button variant="primary" className={classes.ButtonSpace}>
                   加入收藏
                 </Button>
-                <Button variant="primary" className={classes.ButtonSpace2} onClick={this.handleClick} >
-                  查看商品
-                </Button>
+                <Link to={`/products2/${single}`}>
+                  <Button
+                    variant="primary"
+                    className={classes.ButtonSpace2}
+                    onClick={this.handleClick}
+                  >
+                    查看商品
+                  </Button>
+                </Link>
               </Card.Body>
             </Col>
           </div>
         </Card>
-       
       </>
     )
   }

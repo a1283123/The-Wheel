@@ -1,7 +1,7 @@
 import React from 'react'
 import classes from '../Products.module.css'
-import { Button, Container, Col, Row, Carousel } from 'react-bootstrap'
-import { Link, withRouter } from 'react-router-dom'
+import { Carousel } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 class ControlledCarousel extends React.Component {
   constructor(props, context) {
@@ -36,7 +36,7 @@ class ControlledCarousel extends React.Component {
 
   render() {
     const { index, direction } = this.state
-
+    const single = this.props.p_sid
     return (
       <>
         <div>
@@ -50,15 +50,16 @@ class ControlledCarousel extends React.Component {
           style={{ height: '500px' }}
         >
           {this.state.product.map(item => (
-            <Carousel.Item style={{ 'text-align': 'center' }}>
-              <Link to="/products">
-                        <img  className="d-block w-100  "
-                              className={classes.imgHeight}
-                              src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png"
-                              alt="First slide"
-                              style={{ 'object-fit': 'contain' }}
-                            />
-                      </Link>
+            <Carousel.Item style={{ textAlign: 'center' }}>
+              <Link to={`/products2/${single}`}>
+                <img
+                  // className="d-block w-100  "
+                  className={classes.imgHeight}
+                  src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png"
+                  alt="First slide"
+                  style={{ objectFit: 'contain' }}
+                />
+              </Link>
               {/* <img
                 className="d-block w-100  "
                 className={classes.imgHeight}
