@@ -42,7 +42,7 @@ class SingleSiderBar extends React.Component {
               <div className={classes.productSideBarPrice}>
                 <Col className={classes.productSideBarPrice2}>
                   <h1>NT:{this.props.product.p_price}</h1>
-                  <p>{this.props.product.p_name}</p>
+                  <p>{this.props.product.p_name}{this.props.product.photos[0]}</p>
                 </Col>
                 <Col sm={4} className={classes.productSideBarPrice3}>
                   <Form.Control style={{ width: '8rem' }} as="select">

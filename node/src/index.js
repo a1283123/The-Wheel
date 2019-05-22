@@ -38,8 +38,8 @@ const upload = multer({ dest: 'tmp_uploads/' })
 
 var mysqlConnection = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
-  password: '',
+  user: 'wang',
+  password: 'admin',
   database: 'the_wheel',
   multipleStatements: true,
 })
@@ -84,15 +84,40 @@ app.get('/member/:id', (req, res) => {
 //拿到一個商品的資料
 app.get('/product/:id', (req, res) => {
   mysqlConnection.query(
-    'SELECT*FROM prouduct WHERE p_sid = ?',
+    'SELECT * FROM prouduct WHERE p_sid = ?',
     [req.params.id],
     (err, rows, fields) => {
-      if (!err) res.send(rows)
+      
+if (!err){
+        let photos = JSON.parse(rows[0].p_photo);
+        photos = photos.map(val=>{
+            return '//localhost:5555/' + val;
+        });
+        rows[0].photos = photos;
+        
+        console.log(photos);
+        res.send(rows[0]);
+      } 
       else console.log(err)
-    }
-  )
+
+      // if (!err) res.send(rows)
+      // else console.log(err)
+    
+    })
 })
 
 app.listen(5555, () => {
   console.log('server running')
 })
+// if (!err){
+//         let photos = JSON.parse(rows[0].p_photo);
+//         photos = photos.map(val=>{
+//             return 'localhost:5555/' + val;
+//         });
+//         rows[0].photos = photos;
+
+
+//         res.send(rows[0]);
+//       } 
+//       else console.log(err)
+//     }

@@ -31,7 +31,7 @@ class ProductSinglePage extends React.Component {
     fetch(`http://localhost:5555/product/${p_sid}`)
       .then(res => res.json())
       .then(data => {
-        this.setState({ product: data[0] })
+        this.setState({ product: data })
       })
       .catch(err => {
         console.log(err)
