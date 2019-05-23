@@ -10,42 +10,41 @@ import ProductControlledCarousel from '../ProductControlledCarousel'
 import SingleImg from './SingleImg'
 import SingleSiderBar from './SingleSiderBar'
 import SingleProductList from './SingleProductList'
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 const startState = { autoAlpha: 0, y: -50 }
 
 class ProductSinglePage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      id:null,
-     product:null,
+      id: null,
+      product: null,
     }
   }
 
-  componentDidUpdate(prevporps,prevState) {
+  componentDidUpdate(prevporps, prevState) {
     console.log(this.props)
-      if(!this.state.product ){
-    let p_sid = this.state.id
+    if (!this.state.product) {
+      let p_sid = this.state.id
 
-    // const newproject = this.state.product[0]
-    fetch(`http://localhost:5555/product/${p_sid}`)
-      .then(res => res.json())
-      .then(data => {
-        this.setState({ product: data })
-      })
-      .catch(err => {
-        console.log(err)
-      })}
-      
+      // const newproject = this.state.product[0]
+      fetch(`http://localhost:5555/product/${p_sid}`)
+        .then(res => res.json())
+        .then(data => {
+          this.setState({ product: data })
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     let p_sid = this.props.history.location.pathname.slice(11)
-    console.log("mount")
-    this.setState(
-      {
-        id:p_sid,
-      })
+    console.log('mount')
+    this.setState({
+      id: p_sid,
+    })
     //  fetch(`http://localhost:5555/product/${p_sid}`)
     //   .then(res => res.json())
     //   .then(data => {
@@ -55,26 +54,18 @@ class ProductSinglePage extends React.Component {
     //     console.log(err)
     //   })
   }
-  
-//把值傳進去
+
+  //把值傳進去
 
   render() {
-      let list2 =null
-      let list3 = null
-      if(this.state.product){
-        console.log(this.state.product)
-        list2 =  <SingleSiderBar
-        
-        product={this.state.product}
-      />
-      list3= <SingleProductList 
-      
-      product={this.state.product}
-      />
-      }
-    
-  
-  
+    let list2 = null
+    let list3 = null
+    if (this.state.product) {
+      console.log(this.state.product)
+      list2 = <SingleSiderBar product={this.state.product} />
+      list3 = <SingleProductList product={this.state.product} />
+    }
+
     return (
       <>
         <Transition
@@ -99,8 +90,8 @@ class ProductSinglePage extends React.Component {
               </Button>
             </div>
             {/* <SingleSiderBar /> */}
-              {list2}
-              {list3}
+            {list2}
+            {list3}
             <ProductControlledCarousel />
 
             {this.props.children}

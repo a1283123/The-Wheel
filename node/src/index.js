@@ -91,7 +91,7 @@ app.get('/product/:id', (req, res) => {
 if (!err){
         let photos = JSON.parse(rows[0].p_photo);
         photos = photos.map(val=>{
-            return '//localhost:5555/' + val;
+            return val;
         });
         rows[0].photos = photos;
         

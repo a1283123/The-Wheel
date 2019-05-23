@@ -10,7 +10,7 @@ import Products from './containers/Products/Products'
 import SingleProduct from './containers/Products/ProductSingle/ProductSinglePage'
 import Footer from './containers/Footer/Footer'
 import { isLoading } from './store/loadingActions'
-import { BrowserRouter as Router, Route,Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import './App.css'
 
@@ -43,12 +43,12 @@ class App extends Component {
         <div>
           <Nav {...this.props} />
           <Switch>
-          <Route path="/" exact component={Main} />
-          {routes.map(({ path, Component }) => (
-            <Route exact key={path} path={path}>
-              {({ match }) => <Component show={match !== null} />}
-            </Route>
-          ))}
+            <Route path="/" exact component={Main} />
+            {routes.map(({ path, Component }) => (
+              <Route exact key={path} path={path}>
+                {({ match }) => <Component show={match !== null} />}
+              </Route>
+            ))}
           </Switch>
           <Footer />
         </div>

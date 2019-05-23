@@ -49,12 +49,14 @@ class ProductsCard extends React.Component {
                 <Button variant="primary" className={classes.ButtonSpace}>
                   加入收藏
                 </Button>
-                <Link to={{
-                      pathname: `/products2/${single}`,
-                      state: {
-                      p_sid:this.props.p_sid
-                      }
-                  }}>
+                <Link
+                  to={{
+                    pathname: `/products2/${single}`,
+                    state: {
+                      p_sid: this.props.p_sid,
+                    },
+                  }}
+                >
                   <Button
                     variant="primary"
                     className={classes.ButtonSpace2}
