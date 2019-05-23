@@ -26,13 +26,13 @@ class SingleProductList extends React.Component {
     // console.log(this.props.match.params)
     return (
       <>
-        <Container fluid>
+        <Container >
           <Row>
             <Col style={{ textAlign: 'center' }}>
               <img
                 className={classes.imgSmallGroups}
                 style={{ width: '80%' }}
-                src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png"
+                src={this.props.product.photos[0]}
                 alt=""
               />
             </Col>
@@ -40,13 +40,13 @@ class SingleProductList extends React.Component {
               <img
                 className={classes.imgSmallGroups}
                 style={{ width: '80%' }}
-                src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png"
+                src={this.props.product.photos[0]}
                 alt=""
               />
             </Col>
           </Row>
         </Container>
-        <Container fluid>
+        <Container >
           <Row className={classes.productDescription}>
             <Col>
               <p>
@@ -70,7 +70,7 @@ class SingleProductList extends React.Component {
               <img
                 className={classes.productDescriptionImg}
                 style={{ width: '70%' }}
-                src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png"
+                src={this.props.product.photos[0]}
                 alt=""
               />
             </Col>

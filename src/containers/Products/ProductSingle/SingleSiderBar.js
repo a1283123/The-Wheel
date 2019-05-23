@@ -12,7 +12,7 @@ import {
   CardText,
   Table,
 } from 'react-bootstrap'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Alert } from 'reactstrap'
 // import { TweenMax } from 'gsap/all'
 // import { Transition } from 'react-transition-group'
 // import ContentPage from '../ContentPage/ContentPage'
@@ -58,13 +58,27 @@ class SingleSiderBar extends React.Component {
     if (quantity === 0) {
       alert('請選擇數量')
     } else {
-      const cart = [...this.state.cart]
-      const item = Object.assign({}, product, { quantity })
-      cart.push(item)
-      this.setState({
-        cart,
-      })
-      console.log(cart)
+      if(!localStorage.getItem('cart')){
+        const cart = []
+        const item = Object.assign({}, product, { quantity })
+         cart.push(item)
+        this.setState({
+          cart,
+        })
+        
+        localStorage.setItem('cart',JSON.stringify(cart))
+        console.log(this.state)
+      }else{
+          const cart = JSON.parse(localStorage.getItem('cart'))
+          const item = Object.assign({}, product, { quantity })
+          cart.push(item)
+          this.setState({
+            cart,
+          })
+        
+        localStorage.setItem('cart',JSON.stringify(cart))
+      }
+     
     }
   }
 
@@ -78,15 +92,39 @@ class SingleSiderBar extends React.Component {
       () => console.log(this.state)
     )
   }
-
+  deleteCartItem = (index) => {
+    const cart = JSON.parse(localStorage.getItem('cart'))
+    
+    cart.splice(index, 1);
+ 
+    this.setState({
+        cart
+    })
+    localStorage.setItem('cart',JSON.stringify(cart))
+}
   render() {
     const { show, product } = this.state
-    const { cart } = this.state.cart
+    
+    
+    let totalPrice = 0
+    let  cart  = []
+    if(localStorage.getItem('cart')){
+      cart = JSON.parse(localStorage.getItem('cart'))
+
+      totalPrice = (cart) => {
+        cart.forEach(item => {
+          let sum = item.quantity * item.p_price;
+          totalPrice += sum;
+        })
+        return totalPrice;
+      }
+    }
+    
     return (
       <>
-        <Container fluid>
+        <Container fluid style={{width:'90%'}}>
           <Row noGutters>
-            <Col sm={2}>
+            <Col sm={2} md={2}>
               <div className={classes.productSideBarCart}>
                 <h5
                   className={classes.productSideBarCart2}
@@ -104,22 +142,21 @@ class SingleSiderBar extends React.Component {
               </div>
               <div className={classes.productSideBarBarnd}>
                 <p className={classes.productSideBarBarnd2}>
-                  {' '}
                   {this.props.product.p_brand}
                 </p>
               </div>
             </Col>
-            <Col sm={8}>
+            <Col sm={5} md={6}>
               <div className={classes.productSideBarPrice}>
-                <Col className={classes.productSideBarPrice2}>
+                <Col className={classes.productSideBarPrice2} md={10}>
                   <h1>NT:{this.props.product.p_price}</h1>
 
                   <p>
                     {this.props.product.p_name}
-                    {this.props.product.photos[0]}
+                    {/* <img src= {this.props.product.photos[0]}></img> */}
                   </p>
                 </Col>
-                <Col sm={4} className={classes.productSideBarPrice3}>
+                <Col  className={classes.productSideBarPrice3} md={2}>
                   <Form.Control
                     style={{ width: '8rem' }}
                     as="select"
@@ -142,7 +179,7 @@ class SingleSiderBar extends React.Component {
                 </Col>
               </div>
             </Col>
-            <Col className={classes.productSideBarButtonControl} sm={2}>
+            <Col className={classes.productSideBarButtonControl} md={3}>
               <div>
                 <Button className={classes.productSideBarButton}>
                   直接購買
@@ -165,57 +202,118 @@ class SingleSiderBar extends React.Component {
           isOpen={this.state.modal}
           toggle={this.toggle}
           className={this.props.className}
+          size="lg"
         >
           <ModalHeader toggle={this.toggle}>購物車</ModalHeader>
-          <ModalBody>
-            <Container fluid>
+          <ModalBody >
+          <Table>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>商品名</th>
+                    <th>價格</th>
+                    <th>數量</th>
+                    <th>刪除</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {cart.map((item, index) => (
+                 <tr>
+                    <th scope="row">{index + 1}</th>
+                    <td>{item.p_name}</td>
+                    <td>{item.p_price}</td>
+                    <td>{item.quantity}</td>
+                    <td><Button color="danger" onClick={() => this.deleteCartItem(index)}>X</Button></td>
+                </tr>
+                ))}
+                </tbody>
+                
+                <tr>
+                    
+                    <td>總價</td>
+                    <td>{this.totalPrice}</td>
+                    <td>NT:</td>
+                    
+                </tr>
+              </Table>
+              <Alert color="light" className="text-right">
+                總價：
+                {cart.reduce((acc, item) => (acc += item.price), 0)}
+                元
+              </Alert>
+
+
+
+            {/* <Container >
               <Row className="show-grid">
                 <Col xs={1} md={2}>
                   <p>#</p>
                 </Col>
-                <Col xs={5} md={5}>
+                <Col xs={5} md={4}>
                   <p>商品名</p>
                 </Col>
-                <Col xs={4} md={3}>
+                <Col xs={2} md={2}>
                   <p>價格</p>
                 </Col>
                 <Col xs={2} md={2}>
                   <p>數量</p>
                 </Col>
+                <Col xs={2} md={2}>
+                  <p>刪除</p>
+                </Col>
               </Row>
-            </Container>
-
-            <Row className="show-grid">
+              <Row className="show-grid">
               <Col xs={1} md={2}>
                 <p>
-                  {this.state.cart.map((item, index) => (
+                  {cart.map((item, index) => (
                     <p>{item.p_sid}</p>
                   ))}
                 </p>
               </Col>
               <Col xs={5} md={5}>
-                {this.state.cart.map((item, index) => (
+                {cart.map((item, index) => (
                   <p>{item.p_name}</p>
                 ))}
               </Col>
-              <Col xs={4} md={3}>
-                {this.state.cart.map((item, index) => (
+              <Col xs={2} md={2}>
+                {cart.map((item, index) => (
                   <p>{item.p_price}</p>
                 ))}
               </Col>
-              <Col>
+              <Col xs={2} md={2}>
                 <p>
-                  {this.state.cart.map((item, index) => (
+                  {cart.map((item, index) => (
                     <p>{item.quantity}</p>
+                    
                   ))}
                 </p>
               </Col>
+              <Col xs={2} md={2}>
+                   {cart.map((item, index) => (
+                    <Button onClick={() => this.deleteCartItem(index)}>
+                    X
+                    </Button>
+                  ))}
+              
+              </Col>
             </Row>
+            <Row>
+              <Col xs={10} md={8}>總價</Col>
+              
+              <Col xs={2} md={3}>NT:
+              {this.totalPrice}
+              {console.log(this.totalPrice)}
+            
+              </Col>
+            </Row>
+            </Container>
+
+             */}
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.toggle}>
               結帳
-            </Button>{' '}
+            </Button>
             <Button color="secondary" onClick={this.toggle}>
               取消
             </Button>

@@ -160,7 +160,7 @@
   align-items:center;
   margin: auto;
   text-align: center;
-  /* padding-right: 10px; */
+  padding: 0;
   
 }
 
@@ -168,6 +168,7 @@
   background-color: #ccc;
   justify-content:center;
   align-items:center;
+  text-align: center;
   
 }
 
@@ -202,7 +203,7 @@
 .productDescription2{
   
   height: 18rem;
-  background-color: #ccc;
+  /* background-color: #ccc; */
   text-align: center;
   justify-content:center;
   align-items:center;
