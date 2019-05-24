@@ -65,6 +65,8 @@ class ProductSinglePage extends React.Component {
       list2 = <SingleSiderBar product={this.state.product} />
       list3 = <SingleProductList product={this.state.product} />
     }
+    let list4=null
+
 
     return (
       <>

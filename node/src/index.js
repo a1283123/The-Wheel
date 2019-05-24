@@ -38,8 +38,8 @@ const upload = multer({ dest: 'tmp_uploads/' })
 
 var mysqlConnection = mysql.createConnection({
   host: 'localhost',
-  user: 'wang',
-  password: 'admin',
+  user: 'root',
+  password: '',
   database: 'the_wheel',
   multipleStatements: true,
 })

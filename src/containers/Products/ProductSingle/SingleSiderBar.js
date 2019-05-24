@@ -246,6 +246,11 @@ class SingleSiderBar extends React.Component {
                 <td>總價</td>
                 <td />
                 <td>NT:{totalPrice}</td>
+                <Alert color="success" className="text-right">
+                      總價：
+                      {/* {this.totalPrice.reduce((acc, item) => (acc += item.p_price), 0)} */}
+                      元
+                </Alert>
               </tr>
             </Table>
 

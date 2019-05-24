@@ -23,6 +23,29 @@ class oder extends React.Component {
     this.state = {
       product: [],
       display: 'none',
+      cart: [],
+      isChecked: false,
+    }
+    this.handleChecked = this.handleChecked.bind(this)
+  }
+  componentDidMount(){
+    if (!localStorage.getItem('cart')) {
+      const cart = []
+      cart.push()
+      this.setState({
+        cart,
+      })
+
+      localStorage.setItem('cart', JSON.stringify(cart))
+      console.log(this.state)
+    } else {
+      const cart = JSON.parse(localStorage.getItem('cart'))
+      cart.push()
+      this.setState({
+        cart,
+      })
+
+      localStorage.setItem('cart', JSON.stringify(cart))
     }
   }
   handleChange = event => {
@@ -33,42 +56,58 @@ class oder extends React.Component {
     }
   }
 
+  handleChecked() {
+    this.setState({ isChecked: !this.state.isChecked })
+  }
+
   render() {
+    let cart = []
+    cart = JSON.parse(localStorage.getItem('cart'))
+    console.log(this.state)
+    var txt;
+    if (this.state.isChecked) {
+      txt = 'block'
+    } else {
+      txt = 'none'
+    }
+
     return (
       <>
         <Container className={classes.OderCard} style={{ marginTop: '10rem' }}>
           <Card className={classes.OderCardTop}>
             <div className="row">
-              <Col
-                md={7}
-                className={classes.CheckImg}
-                style={{ textAlign: 'center' }}
-              >
-                <Card.Img
-                  variant="top"
-                  src="https://attach.mobile01.com/attach/201809/mobile01-cce4664dba207264b6b9eb925ca3694e.png"
-                  alt=""
-                  style={{ width: '50%' }}
-                />
-              </Col>
-              <Col md={5} style={{ padding: '20px' }}>
-                <Card.Title style={{ marginTop: '4rem' }}>
-                  商品名:XXXX
-                </Card.Title>
-                <Card.Text>商品車種:XXXXXX</Card.Text>
-                <Card.Text>商品品牌:XXXXXXXX</Card.Text>
-                <Card.Text>商品說明:XXXXXXXXXXXXXXXXXXX</Card.Text>
-                <Card.Text>數量:XXXX</Card.Text>
-              </Col>
+              {cart.map((item, index) => (
+                <Col
+                  md={7}
+                  className={classes.CheckImg}
+                  style={{ textAlign: 'center' }}
+                >
+                  <Card.Img
+                    variant="top"
+                    src={item.p_photo}
+                    alt=""
+                    style={{ width: '50%' }}
+                  />
+                  {console.log(item.p_photo)}
+                </Col>
+              ))}
+
+              {cart.map((item, index) => (
+                <Col md={5} style={{ padding: '20px' }}>
+                  <Card.Title style={{ marginTop: '4rem' }}>
+                    商品名:{item.p_name}
+                  </Card.Title>
+                  <Card.Text>商品車種:{item.p_genre}</Card.Text>
+                  <Card.Text>商品品牌:{item.p_brand}</Card.Text>
+                  <Card.Text>商品說明:{item.p_description}</Card.Text>
+                  <Card.Text>數量:{item.quantity}</Card.Text>
+                </Col>
+              ))}
             </div>
             <Form style={{ padding: '15px' }}>
-              <Form.Group as={Col} controlId="formGridState">
+              <Form.Group as={Col} md={4} controlId="formGridState">
                 <Form.Label>付款方式</Form.Label>
-                <Form.Control
-                  as="select"
-                  style={{ width: '70%' }}
-                  onChange={this.handleChange}
-                >
+                <Form.Control as="select" onChange={this.handleChange}>
                   <option selected>請選擇</option>
                   <option value="信用卡">信用卡</option>
                   <option value="貨到付款">貨到付款</option>
@@ -86,33 +125,44 @@ class oder extends React.Component {
                   <Form.Control />
                 </Form.Group>
               </div>
-              <fieldset>
-                <Form.Group>
+
+              <div>
+                <Form.Group controlId="formBasicChecbox">
                   <Form.Label as="legend" column sm={2}>
                     配送方式
                   </Form.Label>
-                  <Col sm={10}>
-                    <Form.Check
-                      type="radio"
-                      label="宅配"
-                      name="formHorizontalRadios"
-                      id="formHorizontalRadios1"
-                    />
-                    <Form.Check
-                      type="radio"
-                      label="7-11寄送"
-                      name="formHorizontalRadios"
-                      id="formHorizontalRadios2"
-                    />
-                    <Form.Check
-                      type="radio"
-                      label="郵局領取"
-                      name="formHorizontalRadios"
-                      id="formHorizontalRadios3"
-                    />
-                  </Col>
+                  <Form.Check
+                    type="checkbox"
+                    label="宅配"
+                    onChange={this.handleChecked}
+                  />
                 </Form.Group>
-              </fieldset>
+                <Form.Group controlId="formBasicChecbox">
+                  <Form.Check type="checkbox" label="7-11寄送" />
+                </Form.Group>
+                <Form.Group controlId="formBasicChecbox">
+                  <Form.Check type="checkbox" label="郵局領取" />
+                </Form.Group>
+              </div>
+              <div style={{ display: `${txt}` }}>
+                <Form.Group as={Col} md={4}>
+                  <Form.Label>地址</Form.Label>
+                  <Form.Control />
+                </Form.Group>
+
+                <Form.Group as={Col} md={2} controlId="formGridState">
+                  <Form.Label>城市</Form.Label>
+                  <Form.Control as="select">
+                    <option selected>選擇</option>
+                    <option>台北市</option>
+                    <option>新北市</option>
+                    <option>桃園市</option>
+                    <option>新竹市</option>
+                    <option>高雄市</option>
+                    <option>嘉義市</option>
+                  </Form.Control>
+                </Form.Group>
+              </div>
             </Form>
             <Container>
               <Row style={{ textAlign: 'right' }}>
