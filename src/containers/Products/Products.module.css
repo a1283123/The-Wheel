@@ -77,24 +77,21 @@
 }
 
 /* 商品細項 */
-.ProductsHight{
+.ProductsHight {
   height: 400px;
   width: 800px;
-  margin-top:8rem;
- 
-
+  margin-top: 8rem;
 }
-.imgGruops{
+.imgGruops {
   text-align: center;
   margin: 15px;
   /* width: 100%; */
 }
-.imgSmallGroups{
+.imgSmallGroups {
   width: 100%;
 }
-.imgSmallGroups2{
-  margin-top:12rem;
-
+.imgSmallGroups2 {
+  margin-top: 12rem;
 }
 
 /* 商品細項按鈕 */
@@ -105,128 +102,119 @@
   border: none;
   opacity: 1;
   margin: 0.5rem;
-  margin-left: 5rem
+  margin-left: 5rem;
 }
 
-.productSideBarCart{
+.productSideBarCart {
   background-color: black;
-  color:#f52a2a;
+  color: #f52a2a;
   height: 6rem;
   margin: auto;
   display: flex;
 }
-.productSideBarCart2{
+.productSideBarCart2 {
   margin: auto;
 }
-.productSideBarGenre{
+.productSideBarGenre {
   background-color: #f52a2a;
-  color:black;
+  color: black;
   height: 3rem;
   margin: auto;
   display: flex;
 }
-.productSideBarGenre2{
+.productSideBarGenre2 {
   margin: auto;
 }
-.productSideBarBarnd{
+.productSideBarBarnd {
   background-color: #f52a2a;
-  color:black;
+  color: black;
   height: 3rem;
   margin: auto;
   display: flex;
 }
-.productSideBarBarnd2{
+.productSideBarBarnd2 {
   margin: auto;
 }
-.productSideBarPrice{
+.productSideBarPrice {
   background-color: #ccc;
-  color:black;
+  color: black;
   height: 12rem;
   margin: auto;
   display: flex;
   justify-content: center;
   text-align: center;
-  
 }
-.productSideBarPrice2{
-  justify-content:center;
-  align-items:center;
+.productSideBarPrice2 {
+  justify-content: center;
+  align-items: center;
   margin: auto;
   text-align: center;
   padding: 0;
 }
-.productSideBarPrice3{
-  justify-content:center;
-  align-items:center;
+.productSideBarPrice3 {
+  justify-content: center;
+  align-items: center;
   margin: auto;
   text-align: center;
   padding: 0;
-  
 }
 
-.productSideBarButtonControl{
+.productSideBarButtonControl {
   background-color: #ccc;
-  justify-content:center;
-  align-items:center;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  
 }
 
-
-.productSideBarButton{
+.productSideBarButton {
   color: #ffff;
   background-color: #f52a2a;
   border: none;
   width: 15rem;
-  margin:  10px;
-  margin-top: 3rem
-  
-  
+  margin: 10px;
+  margin-top: 3rem;
 }
-.productSideBarButton2{
+.productSideBarButton2 {
   color: white;
   background-color: black;
   border: none;
   width: 15rem;
   margin: 10px;
-  
 }
-.productDescription{
-  
+.productDescription {
   height: 30rem;
   background-color: #ccc;
   text-align: center;
-  justify-content:center;
-  align-items:center;
-  padding:8rem ; 
+  justify-content: center;
+  align-items: center;
+  padding: 8rem;
 }
-.productDescription2{
-  
+.productDescription2 {
   height: 18rem;
   /* background-color: #ccc; */
   text-align: center;
-  justify-content:center;
-  align-items:center;
-  
-
+  justify-content: center;
+  align-items: center;
 }
 
-.productDescription3{ 
+.productDescription3 {
   text-align: center;
-  justify-content:center;
-  align-items:center;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   margin: auto;
   padding: 3rem;
 }
-.productDescriptionImg{
-    padding: 3rem;
-    
+.productDescriptionImg {
+  padding: 3rem;
 }
-.ProductCarousel{
+.ProductCarousel {
   margin-bottom: 4rem;
 }
-.CarouselTitle2{
+.CarouselTitle2 {
   margin-top: 2rem;
   text-align: center;
+}
+.SingleSiderBarHight {
+  margin-top: 11rem;
 }

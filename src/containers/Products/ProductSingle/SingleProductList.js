@@ -26,7 +26,7 @@ class SingleProductList extends React.Component {
     // console.log(this.props.match.params)
     return (
       <>
-        <Container >
+        <Container>
           <Row>
             <Col style={{ textAlign: 'center' }}>
               <img
@@ -46,18 +46,13 @@ class SingleProductList extends React.Component {
             </Col>
           </Row>
         </Container>
-        <Container >
+        <Container>
           <Row className={classes.productDescription}>
             <Col>
-              <p>
-                {this.props.product.p_description}
-                
-              </p>
+              <p>{this.props.product.p_description}</p>
             </Col>
             <Col>
-              <p>
-              {this.props.product.p_description}
-              </p>
+              <p>{this.props.product.p_description}</p>
             </Col>
           </Row>
         </Container>
@@ -76,8 +71,8 @@ class SingleProductList extends React.Component {
             </Col>
             <Col className={classes.productDescription2}>
               <div className={classes.productDescription3}>
-                <p style={{marginTop:'60px'}}>
-                {this.props.product.p_description}
+                <p style={{ marginTop: '60px' }}>
+                  {this.props.product.p_description}
                 </p>
               </div>
             </Col>

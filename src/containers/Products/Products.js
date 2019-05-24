@@ -107,5 +107,3 @@ class products extends React.Component {
 }
 
 export default products
-
-

@@ -38,8 +38,8 @@ const upload = multer({ dest: 'tmp_uploads/' })
 
 var mysqlConnection = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
-  password: '',
+  user: 'wang',
+  password: 'admin',
   database: 'the_wheel',
   multipleStatements: true,
 })
@@ -87,23 +87,21 @@ app.get('/product/:id', (req, res) => {
     'SELECT * FROM prouduct WHERE p_sid = ?',
     [req.params.id],
     (err, rows, fields) => {
-      
-if (!err){
-        let photos = JSON.parse(rows[0].p_photo);
-        photos = photos.map(val=>{
-            return val;
-        });
-        rows[0].photos = photos;
-        
-        console.log(photos);
-        res.send(rows[0]);
-      } 
-      else console.log(err)
+      if (!err) {
+        let photos = JSON.parse(rows[0].p_photo)
+        photos = photos.map(val => {
+          return val
+        })
+        rows[0].photos = photos
+
+        console.log(photos)
+        res.send(rows[0])
+      } else console.log(err)
 
       // if (!err) res.send(rows)
       // else console.log(err)
-    
-    })
+    }
+  )
 })
 
 app.listen(5555, () => {
@@ -116,8 +114,7 @@ app.listen(5555, () => {
 //         });
 //         rows[0].photos = photos;
 
-
 //         res.send(rows[0]);
-//       } 
+//       }
 //       else console.log(err)
 //     }

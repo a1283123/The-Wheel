@@ -12,7 +12,15 @@ import {
   CardText,
   Table,
 } from 'react-bootstrap'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Alert } from 'reactstrap'
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Alert,
+} from 'reactstrap'
+import { Link } from 'react-router-dom'
 // import { TweenMax } from 'gsap/all'
 // import { Transition } from 'react-transition-group'
 // import ContentPage from '../ContentPage/ContentPage'
@@ -58,27 +66,26 @@ class SingleSiderBar extends React.Component {
     if (quantity === 0) {
       alert('請選擇數量')
     } else {
-      if(!localStorage.getItem('cart')){
+      if (!localStorage.getItem('cart')) {
         const cart = []
         const item = Object.assign({}, product, { quantity })
-         cart.push(item)
+        cart.push(item)
         this.setState({
           cart,
         })
-        
-        localStorage.setItem('cart',JSON.stringify(cart))
+
+        localStorage.setItem('cart', JSON.stringify(cart))
         console.log(this.state)
-      }else{
-          const cart = JSON.parse(localStorage.getItem('cart'))
-          const item = Object.assign({}, product, { quantity })
-          cart.push(item)
-          this.setState({
-            cart,
-          })
-        
-        localStorage.setItem('cart',JSON.stringify(cart))
+      } else {
+        const cart = JSON.parse(localStorage.getItem('cart'))
+        const item = Object.assign({}, product, { quantity })
+        cart.push(item)
+        this.setState({
+          cart,
+        })
+
+        localStorage.setItem('cart', JSON.stringify(cart))
       }
-     
     }
   }
 
@@ -92,37 +99,37 @@ class SingleSiderBar extends React.Component {
       () => console.log(this.state)
     )
   }
-  deleteCartItem = (index) => {
+  deleteCartItem = index => {
     const cart = JSON.parse(localStorage.getItem('cart'))
-    
-    cart.splice(index, 1);
- 
+
+    cart.splice(index, 1)
+
     this.setState({
-        cart
+      cart,
     })
-    localStorage.setItem('cart',JSON.stringify(cart))
-}
+    localStorage.setItem('cart', JSON.stringify(cart))
+  }
   render() {
     const { show, product } = this.state
-    
-    
+
     let totalPrice = 0
-    let  cart  = []
-    if(localStorage.getItem('cart')){
+    let cart = []
+    if (localStorage.getItem('cart')) {
       cart = JSON.parse(localStorage.getItem('cart'))
 
-      totalPrice = (cart) => {
-        cart.forEach(item => {
-          let sum = item.quantity * item.p_price;
-          totalPrice += sum;
-        })
-        return totalPrice;
-      }
+      cart.forEach(item => {
+        let sum = item.quantity * item.p_price
+        return (totalPrice += sum)
+      })
     }
-    
+
     return (
       <>
-        <Container fluid style={{width:'90%'}}>
+        <Container
+          fluid
+          // style={{ width: '90%' }}
+          className={classes.SingleSiderBarHight}
+        >
           <Row noGutters>
             <Col sm={2} md={2}>
               <div className={classes.productSideBarCart}>
@@ -156,7 +163,7 @@ class SingleSiderBar extends React.Component {
                     {/* <img src= {this.props.product.photos[0]}></img> */}
                   </p>
                 </Col>
-                <Col  className={classes.productSideBarPrice3} md={2}>
+                <Col className={classes.productSideBarPrice3} md={2}>
                   <Form.Control
                     style={{ width: '8rem' }}
                     as="select"
@@ -179,7 +186,7 @@ class SingleSiderBar extends React.Component {
                 </Col>
               </div>
             </Col>
-            <Col className={classes.productSideBarButtonControl} md={3}>
+            <Col className={classes.productSideBarButtonControl} md={4}>
               <div>
                 <Button className={classes.productSideBarButton}>
                   直接購買
@@ -205,44 +212,42 @@ class SingleSiderBar extends React.Component {
           size="lg"
         >
           <ModalHeader toggle={this.toggle}>購物車</ModalHeader>
-          <ModalBody >
-          <Table>
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>商品名</th>
-                    <th>價格</th>
-                    <th>數量</th>
-                    <th>刪除</th>
-                  </tr>
-                </thead>
-                <tbody>
+          <ModalBody>
+            <Table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>商品名</th>
+                  <th>價格</th>
+                  <th>數量</th>
+                  <th>刪除</th>
+                </tr>
+              </thead>
+              <tbody>
                 {cart.map((item, index) => (
-                 <tr>
+                  <tr>
                     <th scope="row">{index + 1}</th>
                     <td>{item.p_name}</td>
                     <td>{item.p_price}</td>
                     <td>{item.quantity}</td>
-                    <td><Button color="danger" onClick={() => this.deleteCartItem(index)}>X</Button></td>
-                </tr>
+                    <td>
+                      <Button
+                        color="danger"
+                        onClick={() => this.deleteCartItem(index)}
+                      >
+                        X
+                      </Button>
+                    </td>
+                  </tr>
                 ))}
-                </tbody>
-                
-                <tr>
-                    
-                    <td>總價</td>
-                    <td>{this.totalPrice}</td>
-                    <td>NT:</td>
-                    
-                </tr>
-              </Table>
-              <Alert color="light" className="text-right">
-                總價：
-                {cart.reduce((acc, item) => (acc += item.price), 0)}
-                元
-              </Alert>
+              </tbody>
 
-
+              <tr>
+                <td>總價</td>
+                <td />
+                <td>NT:{totalPrice}</td>
+              </tr>
+            </Table>
 
             {/* <Container >
               <Row className="show-grid">
@@ -311,9 +316,9 @@ class SingleSiderBar extends React.Component {
              */}
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>
-              結帳
-            </Button>
+            <Link to="/checkout">
+              <Button color="primary">結帳</Button>
+            </Link>
             <Button color="secondary" onClick={this.toggle}>
               取消
             </Button>
