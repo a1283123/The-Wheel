@@ -16,8 +16,8 @@ app.use(bodyparser.urlencoded({ extended: false }))
 app.use(bodyparser.json())
 
 var whitelist = [
-  'http://localhost:5555',
-  'http:// 192.168.1.111:5555',
+  'http://localhost:5000',
+  'http:// 192.168.1.111:5000',
   undefined,
   'http://localhost:3000',
 ]
@@ -104,17 +104,53 @@ app.get('/product/:id', (req, res) => {
   )
 })
 
-app.listen(5555, () => {
+
+//拿到會員商品的定單
+app.get('/orders/:id', (req, res) => {
+  mysqlConnection.query(
+    'SELECT * FROM orders WHERE id = ?',
+    [req.params.id],
+    (err, rows, fields) => {
+      if (!err) res.send(rows)
+    else console.log(err)
+
+      // if (!err) res.send(rows)
+      // else console.log(err)
+    }
+  )
+})
+
+
+
+
+
+
+
+
+
+
+
+//上傳訂購單資料
+
+
+
+app.post("/checkout", (req, res) => {
+  console.log(req.body.id)
+  mysqlConnection.query((`INSERT INTO orders (id, cart, pay, delivery, totalprice) VALUES (${req.body.id}, '${req.body.cart}', '${req.body.pay}', '${req.body.delivery}', ${req.body.totalprice})`),(error, result) => {
+   
+    if(!error){
+      res.json({success: true});
+   }else{
+    console.log(error)
+   }
+  })
+})
+
+
+
+
+
+app.listen(5000, () => {
   console.log('server running')
 })
-// if (!err){
-//         let photos = JSON.parse(rows[0].p_photo);
-//         photos = photos.map(val=>{
-//             return 'localhost:5555/' + val;
-//         });
-//         rows[0].photos = photos;
 
-//         res.send(rows[0]);
-//       }
-//       else console.log(err)
-//     }

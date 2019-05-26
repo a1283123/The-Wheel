@@ -1,22 +1,36 @@
-.Background {
-  
-  /* background: linear-gradient(180deg, rgb(0, 0, 0, 10), rgb(0, 0, 0, 0.3)); */
-  background: black;
-  width: 85%;
-  height: 10vh;
+.Navbar {
+  display: flex;
+  width: 100%;
   position: fixed;
   top: 0;
   z-index: 9;
+}
+
+.Background {
+  
+  /* background: linear-gradient(180deg, rgb(0, 0, 0, 10), rgb(0, 0, 0, 0.3)); */
+  position: relative;
+  background: black;
+  width: 85% ;
+  height: 10vh;
   overflow: visible;
   transition: 0.5s;
 }
 .Right{
-  width:15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
-  top: 0;
   right: 0;
-  height:10vh;
-  z-index: 9;
+  top: 0;
+  height: 10vh;
+  width: 15%;
+  background-color: #F52A2A
+}
+.Right > div {
+  flex-grow: 1;
+  text-align: center;
+  
 }
 
 .Close{
@@ -60,7 +74,6 @@
   align-items: center;
   width: 60%;
   height: 10vh;
-  z-index: 10;
   position: absolute;
   top: 0;
   transition: 0.5s;
@@ -86,7 +99,6 @@
   letter-spacing: 10px;
   background: rgb(255, 255, 255, 0);
   position: relative;
-  z-index: 10;
   transition: 0.5s;
 }
 .Nav a {
@@ -173,5 +185,7 @@
     background: rgba(0,0,0,0.5);
     width: 100%;
   }
-  
+  .Right {
+    width: 30%;
+  }
 }

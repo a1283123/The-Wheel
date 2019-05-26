@@ -19,6 +19,7 @@ class ProductSinglePage extends React.Component {
     this.state = {
       id: null,
       product: null,
+     
     }
   }
 
@@ -28,7 +29,7 @@ class ProductSinglePage extends React.Component {
       let p_sid = this.state.id
 
       // const newproject = this.state.product[0]
-      fetch(`http://localhost:5555/product/${p_sid}`)
+      fetch(`http://localhost:5000/product/${p_sid}`)
         .then(res => res.json())
         .then(data => {
           this.setState({ product: data })
@@ -37,11 +38,11 @@ class ProductSinglePage extends React.Component {
           console.log(err)
         })
     }
+   
   }
 
   componentDidMount() {
     let p_sid = this.props.history.location.pathname.slice(11)
-    console.log('mount')
     this.setState({
       id: p_sid,
     })
@@ -67,7 +68,7 @@ class ProductSinglePage extends React.Component {
     }
     let list4=null
 
-
+    
     return (
       <>
         <Transition

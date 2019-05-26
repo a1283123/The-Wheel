@@ -17,7 +17,7 @@ class ControlledCarousel extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:5555/prouductcarousel')
+    fetch('http://localhost:5000/prouductcarousel')
       .then(res => res.json())
       .then(data => {
         console.log(data)

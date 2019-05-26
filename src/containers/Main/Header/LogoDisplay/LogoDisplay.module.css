@@ -74,6 +74,7 @@
   }
 
   .DisplayLogoTextSmall {
-    top: 45vh;
+    right: 0;
+    top: 42vh;
   }
 }

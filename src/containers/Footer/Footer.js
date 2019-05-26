@@ -1,16 +1,16 @@
-import React from 'react'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import './Footer.css'
+import React from "react";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import "./Footer.css";
 
 const footer = () => {
   return (
     <Container fluid className="footers">
       <Row>
         <Col lg={4} className="d-flex footer">
-          <div className="left1">友站連結</div>
-          <div className="right1">
+          <div className="left">友站連結</div>
+          <div className="right">
             <ul>
               <li>TREK</li>
               <li>MERIDA</li>
@@ -21,7 +21,7 @@ const footer = () => {
           </div>
         </Col>
         <Col lg={4} className="d-flex footer">
-          <div className="left">會員服務</div>
+        <div className="left">會員服務</div>
           <div className="right">
             <ul>
               <li>聯絡我們</li>
@@ -45,7 +45,7 @@ const footer = () => {
         </Col>
       </Row>
     </Container>
-  )
+  );
 }
 
-export default footer
+export default footer;

@@ -41,6 +41,7 @@ class SingleSiderBar extends React.Component {
       product: this.props.product,
       cart: [],
       quantity: 0,
+      totalPrice:0,
     }
   }
 
@@ -118,9 +119,14 @@ class SingleSiderBar extends React.Component {
       cart = JSON.parse(localStorage.getItem('cart'))
 
       cart.forEach(item => {
-        let sum = item.quantity * item.p_price
+        console.log(item.p_price)
+        let sum = item.quantity * Number(item.p_price)
         return (totalPrice += sum)
       })
+      // this.setState({
+      //   totalPrice:{totalPrice}
+      // })
+      localStorage.setItem('totalPrice', JSON.stringify(totalPrice))
     }
 
     return (
@@ -139,7 +145,7 @@ class SingleSiderBar extends React.Component {
                 >
                   {this.props.buttonLabel}
                   <IoIosCart size={25} />
-                  購物車
+                  購物車({this.state.cart.length})
                 </h5>
               </div>
               <div className={classes.productSideBarGenre}>
@@ -163,9 +169,9 @@ class SingleSiderBar extends React.Component {
                     {/* <img src= {this.props.product.photos[0]}></img> */}
                   </p>
                 </Col>
-                <Col className={classes.productSideBarPrice3} md={2}>
+                <Col className={classes.productSideBarPrice3} md={5}>
                   <Form.Control
-                    style={{ width: '8rem' }}
+                    style={{ width: '10rem' }}
                     as="select"
                     onChange={this.handleChange}
                   >
@@ -246,79 +252,11 @@ class SingleSiderBar extends React.Component {
                 <td>總價</td>
                 <td />
                 <td>NT:{totalPrice}</td>
-                <Alert color="success" className="text-right">
-                      總價：
-                      {/* {this.totalPrice.reduce((acc, item) => (acc += item.p_price), 0)} */}
-                      元
-                </Alert>
+               
               </tr>
             </Table>
 
-            {/* <Container >
-              <Row className="show-grid">
-                <Col xs={1} md={2}>
-                  <p>#</p>
-                </Col>
-                <Col xs={5} md={4}>
-                  <p>商品名</p>
-                </Col>
-                <Col xs={2} md={2}>
-                  <p>價格</p>
-                </Col>
-                <Col xs={2} md={2}>
-                  <p>數量</p>
-                </Col>
-                <Col xs={2} md={2}>
-                  <p>刪除</p>
-                </Col>
-              </Row>
-              <Row className="show-grid">
-              <Col xs={1} md={2}>
-                <p>
-                  {cart.map((item, index) => (
-                    <p>{item.p_sid}</p>
-                  ))}
-                </p>
-              </Col>
-              <Col xs={5} md={5}>
-                {cart.map((item, index) => (
-                  <p>{item.p_name}</p>
-                ))}
-              </Col>
-              <Col xs={2} md={2}>
-                {cart.map((item, index) => (
-                  <p>{item.p_price}</p>
-                ))}
-              </Col>
-              <Col xs={2} md={2}>
-                <p>
-                  {cart.map((item, index) => (
-                    <p>{item.quantity}</p>
-                    
-                  ))}
-                </p>
-              </Col>
-              <Col xs={2} md={2}>
-                   {cart.map((item, index) => (
-                    <Button onClick={() => this.deleteCartItem(index)}>
-                    X
-                    </Button>
-                  ))}
-              
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={10} md={8}>總價</Col>
-              
-              <Col xs={2} md={3}>NT:
-              {this.totalPrice}
-              {console.log(this.totalPrice)}
-            
-              </Col>
-            </Row>
-            </Container>
-
-             */}
+       
           </ModalBody>
           <ModalFooter>
             <Link to="/checkout">

@@ -15,7 +15,7 @@ class NewsList extends React.Component {
     <Col lg={this.props.size} className="lists">
       
        <div className="NewsList" >
-
+          <div className="Type">#{this.props.type}</div>
           <div className="ReadMore">
             <button onClick={this.props.onClick}>
               read more

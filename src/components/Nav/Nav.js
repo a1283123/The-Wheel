@@ -1,65 +1,41 @@
-import React from 'react'
-import Logo from '../Logo/Logo'
-import Login from '../Login/Login'
-import classes from './Nav.module.css'
-import './Nav.module.css'
-import { NavLink, withRouter } from 'react-router-dom'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+import React from "react";
+import Logo from "../Logo/Logo";
+import classes from "./Nav.module.css";
+import "./Nav.module.css";
+import { NavLink, withRouter } from "react-router-dom";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 class Nav extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       showMenu: false,
-      showNav: true,
-    }
+      showNav: true
+    };
 
-    this.observer = null
+    this.observer = null;
   }
 
   menuHandler = () => {
     if (window.innerWidth <= 992) {
       this.setState((prevState, prevProp) => ({
-        showMenu: !prevState.showMenu,
-      }))
+        showMenu: !prevState.showMenu
+      }));
     }
-  }
+  };
 
   componentDidMount() {
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       if (window.innerWidth > 992 && this.state.showMenu) {
-        this.setState({ showMenu: false })
+        this.setState({ showMenu: false });
       }
-      // if(window.innerWidth <= 992){
-      //   clearInterval(interval);
-      //   interval = null;
-      // }else{
-      //   if(!interval){
-      //   interval = setInterval(toggleNav, 2000);
-      //   }
-      // }
-    })
-    // let html = document.querySelector("html");
-
-    // let lastTop = 0;
-
-    // const toggleNav = () => {
-    //   let currentTop = html.scrollTop;
-    //   if (currentTop >= lastTop) {
-    //     this.setState({ showNav: false });
-    //   } else {
-    //     this.setState({ showNav: true });
-    //   }
-    //   lastTop = currentTop;
-    // };
-
-    // window.addEventListener("scroll", toggleNav);
+    });
   }
 
   render() {
-    let location = this.props.history.location.pathname
+    let location = this.props.history.location.pathname;
     // console.log(location);
     const style = {
       background: `linear-gradient(
@@ -68,31 +44,31 @@ class Nav extends React.Component {
       rgb(255, 6, 0, 0.9),
       rgb(255, 255, 255, 0.2)
     )`,
-      opacity: '0.7',
-      width: '100%',
-    }
-    let navClass = [classes.Background]
+      opacity: "0.7",
+      width: "100%"
+    };
+    let navClass = [classes.Background];
     if (!this.state.showNav) {
-      navClass = [classes.Background, classes.Close]
+      navClass = [classes.Background, classes.Close];
     }
 
-    let menuClass = [classes.Nav]
+    let menuClass = [classes.Nav];
     let activeStyle = {
-      color: 'white',
-      fontSize: '1.4rem',
-      textShadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      flexDirection: 'column',
-    }
+      color: "white",
+      fontSize: "1.4rem",
+      textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      flexDirection: "column"
+    };
     if (this.state.showMenu) {
-      menuClass = [classes.Nav, classes.Open]
-      activeStyle = { color: 'white', fontSize: '2.5rem' }
+      menuClass = [classes.Nav, classes.Open];
+      activeStyle = { color: "white", fontSize: "2.5rem" };
     }
     return (
       <nav className={classes.Navbar}>
-        <div className={navClass.join(' ')} ref={el => (this.nav = el)}>
+        <div className={navClass.join(" ")} ref={el => (this.nav = el)}>
           <Logo />
 
           <div className={classes.Menu} onClick={this.menuHandler}>
@@ -100,7 +76,7 @@ class Nav extends React.Component {
             <div />
             <div />
           </div>
-          <ul className={menuClass.join(' ')}>
+          <ul className={menuClass.join(" ")}>
             <Container fluid={true} className="text-nowrap">
               <Row>
                 <Col lg={2}>
@@ -108,13 +84,10 @@ class Nav extends React.Component {
                     <NavLink
                       to="/route"
                       activeStyle={activeStyle}
-                      onClick={() => {
-                        window.scrollTo(0, 0)
-                        this.menuHandler()
-                      }}
+                      onClick={this.menuHandler}
                     >
                       騎車路線
-                      <div style={location === '/route' ? style : null} />
+                      <div style={location === "/route" ? style : null} />
                     </NavLink>
                   </li>
                 </Col>
@@ -123,13 +96,10 @@ class Nav extends React.Component {
                     <NavLink
                       to="/group"
                       activeStyle={activeStyle}
-                      onClick={() => {
-                        window.scrollTo(0, 0)
-                        this.menuHandler()
-                      }}
+                      onClick={this.menuHandler}
                     >
                       揪團騎車
-                      <div style={location === '/group' ? style : null} />
+                      <div style={location === "/group" ? style : null} />
                     </NavLink>
                   </li>
                 </Col>
@@ -138,13 +108,10 @@ class Nav extends React.Component {
                     <NavLink
                       to="/coach"
                       activeStyle={activeStyle}
-                      onClick={() => {
-                        window.scrollTo(0, 0)
-                        this.menuHandler()
-                      }}
+                      onClick={this.menuHandler}
                     >
                       課程專區
-                      <div style={location === '/coach' ? style : null} />
+                      <div style={location === "/coach" ? style : null} />
                     </NavLink>
                   </li>
                 </Col>
@@ -153,13 +120,10 @@ class Nav extends React.Component {
                     <NavLink
                       to="/news"
                       activeStyle={activeStyle}
-                      onClick={() => {
-                        window.scrollTo(0, 0)
-                        this.menuHandler()
-                      }}
+                      onClick={this.menuHandler}
                     >
                       文章專區
-                      <div style={location === '/news' ? style : null} />
+                      <div style={location === "/news" ? style : null} />
                     </NavLink>
                   </li>
                 </Col>
@@ -168,13 +132,10 @@ class Nav extends React.Component {
                     <NavLink
                       to="/products"
                       activeStyle={activeStyle}
-                      onClick={() => {
-                        window.scrollTo(0, 0)
-                        this.menuHandler()
-                      }}
+                      onClick={this.menuHandler}
                     >
                       商品頁面
-                      <div style={location === '/products' ? style : null} />
+                      <div style={location === "/products" ? style : null} />
                     </NavLink>
                   </li>
                 </Col>
@@ -182,12 +143,10 @@ class Nav extends React.Component {
             </Container>
           </ul>
         </div>
-        <div className={classes.Right}>
-          <Login />
-        </div>
+        <div className={classes.Right} />
       </nav>
-    )
+    );
   }
 }
 
-export default withRouter(Nav)
+export default withRouter(Nav);

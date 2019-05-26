@@ -2,6 +2,9 @@ import React from "react";
 import { TweenMax, TimelineMax, Bounce } from "gsap/all";
 import classes from "./Loading.module.css";
 import { isAnimated } from "../../store/loadingActions";
+import CSSPlugin from 'gsap/CSSPlugin';
+
+const C = CSSPlugin;
 
 class Loading extends React.Component {
   constructor(props) {

@@ -21,7 +21,7 @@ class Popular extends React.Component {
               <div className={classes.PopularList}>
                 <div className={classes.RedBack} />
                 <Row>
-                  <Col lg={3}>
+                  <Col lg={3} sm={6}>
                     <div className={classes.ListCard}>
                       <figure>
                         <img src={image} alt="..." />
@@ -37,7 +37,7 @@ class Popular extends React.Component {
                       </div>
                     </div>
                   </Col>
-                  <Col lg={3}>
+                  <Col lg={3} sm={6}>
                     <div className={classes.ListCard}>
                       <figure>
                         <img src={image} alt="..." />
@@ -53,7 +53,7 @@ class Popular extends React.Component {
                       </div>
                     </div>
                   </Col>
-                  <Col lg={3}>
+                  <Col lg={3} sm={6}>
                     <div className={classes.ListCard}>
                       <figure>
                         <img src={image} alt="..." />
@@ -69,7 +69,7 @@ class Popular extends React.Component {
                       </div>
                     </div>
                   </Col>
-                  <Col lg={3}>
+                  <Col lg={3} sm={6}>
                     <div className={classes.ListCard}>
                       <figure>
                         <img src={image} alt="..." />

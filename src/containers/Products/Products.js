@@ -21,7 +21,7 @@ class products extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:5555/product')
+    fetch('http://localhost:5000/product')
       .then(res => res.json())
       .then(data => {
         console.log(data)
@@ -44,9 +44,9 @@ class products extends React.Component {
             description={item.p_description}
             price={item.p_price}
             p_sid={item.p_sid}
-            onClick={() => {
-              this.SingleProduct(item['p_sid'])
-            }}
+            // onClick={() => {
+            //   this.SingleProduct(item['p_sid'])
+            // }}
           />
         )
       })
@@ -98,7 +98,7 @@ class products extends React.Component {
               </Row>
             </Container>
 
-            {this.props.children}
+            {/* {this.props.children} */}
           </div>
         </Transition>
       </>

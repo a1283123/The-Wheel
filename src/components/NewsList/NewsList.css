@@ -9,7 +9,6 @@
   height: 60vh;
   overflow: hidden;
   margin: 10px;
-  /* border: 1px solid black; */
   background-color: white;
   padding-bottom: 20px;
   position: relative;
@@ -115,4 +114,10 @@
 
 .ReadMore:hover + div figure img{
   transform: scale(1.2);
+}
+
+.Type {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
 }

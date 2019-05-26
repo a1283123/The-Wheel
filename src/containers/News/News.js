@@ -3,8 +3,14 @@ import classes from "./News.module.css";
 import { TweenMax } from "gsap/all";
 import { Transition } from "react-transition-group";
 import ContentPage from "../ContentPage/ContentPage";
+import { connect } from "react-redux";
+import { searchOnChange, typeOnChange, clearAllFilter, clearSearch } from "../../store/newsActions";
 import NewsLists from "./NewsLists/NewsLists";
+import Control from "./Control/Control";
 import PopularNews from "./PopularNews/PopularNews"
+import CSSPlugin from 'gsap/CSSPlugin';
+
+const C = CSSPlugin;
 
 const startState = { autoAlpha: 0, y: -50 };
 
@@ -14,6 +20,7 @@ class News extends React.Component {
     this.state={
       showPopular : false
     }
+    this.search = null;
   }
 
   componentDidMount(){
@@ -21,16 +28,35 @@ class News extends React.Component {
   }
 
   toggleList = (e) => {
-    if(e.target.value === "false"){
+    if(e.target.getAttribute("value") === "false"){
       this.setState({showPopular: false});
     }else{
       this.setState({showPopular: true});
     }  
   }
+
+  filterHandler = (e) => {
+    let type = e.target.getAttribute("data-value");
+    if(type === this.props.filter) type = null;
+    this.props.dispatch(typeOnChange(type));
+  }
+
+  searchHandler = ( ) => {
+    let search = this.search.value;
+    if(this.props.search !== null){
+      return this.props.dispatch(searchOnChange(null));
+    }
+    this.props.dispatch(searchOnChange(search));
+    this.search.value = null
+  }
+
+  clearAllHandler = () => {
+    this.props.dispatch(clearAllFilter());
+  }
   
 
   render(){
-    console.log(this.props);
+    console.log(this.props.isFetching);
   return (
   <Transition
     unmountOnExit
@@ -47,16 +73,21 @@ class News extends React.Component {
   >     
   
   <div className={classes.News}>
-    <div className={classes.Mask}></div>
-    <ContentPage scrollTop={this.props.percentage}>
-    <div className={classes.Control}>
-      <button onClick={this.toggleList} value={false}>所有文章</button>
-      <button onClick={this.toggleList} value={true}>熱門文章</button>
-    </div>
-    
+    <ContentPage>
+      <Control toggle={this.toggleList}
+               filterHandler={this.filterHandler}
+               searchHandler={this.searchHandler} 
+               clearAllHandler={this.clearAllHandler}
+               setRef={el => this.search = el}
+               showPopular={this.state.showPopular}
+               {...this.props}
+      />
+      
+      
       {this.state.showPopular
       ? <PopularNews/>
-      :<NewsLists show={this.props.show}/>}
+      :<NewsLists/>}
+
        
       
      
@@ -68,4 +99,12 @@ class News extends React.Component {
   }
 };
 
-export default News;
+const mapStateToProps = state => {
+  return {
+    search: state.news.search,
+    filter: state.news.filter,
+    isFetching: state.news.isFetching
+  }
+}
+
+export default connect(mapStateToProps)(News);

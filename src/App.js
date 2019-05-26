@@ -12,10 +12,9 @@ import Footer from './containers/Footer/Footer'
 import { isLoading } from './store/loadingActions'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
-import oder from './containers/Products/oder/oder'
+import orders from './containers/Products/oder/oders'
 import checkout from './containers/Products/checkout/checkout'
 import './App.css'
-
 const routes = [
   // { path: '/', name: 'Home', Component: Main },
   { path: '/route', name: 'About', Component: Routes },
@@ -24,24 +23,21 @@ const routes = [
   { path: '/news', name: 'Contact', Component: News },
   { path: '/products', name: 'Contact', Component: Products },
   { path: `/products2/:id`, Component: SingleProduct },
-  { path: '/oder', name: 'Contact', Component: oder },
+  { path: '/orders/:id', name: 'Contact', Component: orders },
   { path: '/checkout', name: 'Contact', Component: checkout },
 ]
 
 class App extends Component {
   componentDidMount() {
-    setTimeout(() => this.props.dispatch(isLoading()))
-  }
-  componentDidUpdate() {
-    console.log('app update', this.props)
+    setTimeout(() => this.props.dispatch(isLoading()));
   }
 
   render() {
-    // const { isLoading, isAnimated } = this.props;
+    const { isLoading, isAnimated } = this.props;
 
     // return isLoading || !isAnimated ? (
-    // <Loading {...this.props} />
-    // ) : (
+    //   <Loading {...this.props} />
+    // ) :
     return (
       <Router>
         <div>
@@ -49,24 +45,25 @@ class App extends Component {
           <Switch>
             <Route path="/" exact component={Main} />
             {routes.map(({ path, Component }) => (
-              <Route exact key={path} path={path}>
-                {({ match }) => <Component show={match !== null} />}
+              <Route key={path} path={path}>
+                {({ match }) => (
+                  <Component {...this.props} show={match !== null} />
+                )}
               </Route>
             ))}
           </Switch>
           <Footer />
         </div>
       </Router>
-    )
-    // )
+    );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    // isLoading: state.loading.isLoading,
-    // isAnimated: state.loading.isAnimated
-  }
-}
+    isLoading: state.loading.isLoading,
+    isAnimated: state.loading.isAnimated
+  };
+};
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps)(App);

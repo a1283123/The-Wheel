@@ -8,8 +8,15 @@ import thunkMiddleware from "redux-thunk";
 import { Provider } from "react-redux";
 import news from "./store/reducers/newsReducer";
 import loading from "./store/reducers/loadingReducer";
+import fullArticle from "./store/reducers/fullArticleReducer";
+import cart from "./store/reducers/cartReducer";
+import loginStatus from "./store/reducers/loginReducer";
+import products from "./store/reducers/productsReducer";
+import modal from "./store/reducers/modalReducer";
+import axios from "axios";
 
-const rootReducer = combineReducers({ loading, news });
+
+const rootReducer = combineReducers({ loading, news, fullArticle, cart, loginStatus, products, modal });
 
 // function configureStore(preloadedState) {
 //   return createStore(
@@ -23,7 +30,20 @@ const rootReducer = combineReducers({ loading, news });
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
-console.log(store.getState());
+const token = localStorage.getItem("token")
+if(token){
+  axios.get("http://localhost:5000/get_user", {
+    params: {
+      token: token
+    }
+  }).then(res =>
+    store.dispatch({
+    type: "ALREADY_AUTH",
+    user: res.data
+  })
+)
+  
+}
 
 ReactDOM.render(
   <Provider store={store}>
@@ -36,3 +56,7 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+if (module.hot){
+  module.hot.accept();
+}
+

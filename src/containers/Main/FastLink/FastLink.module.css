@@ -34,7 +34,7 @@
 .Links > figure > img {
   object-fit: cover;
   width: 100%;
-  max-height: 35vh;
+  min-height: 35vh;
 }
 
 .Links > a {
