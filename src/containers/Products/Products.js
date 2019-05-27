@@ -17,6 +17,9 @@ class products extends React.Component {
     super(props)
     this.state = {
       product: [],
+      type: null,
+      genre: null,
+      filter: null,
     }
   }
 
@@ -30,6 +33,49 @@ class products extends React.Component {
       .catch(err => {
         console.log(err)
       })
+  }
+
+  componentDidUpdate() {}
+  //搜尋欄位 改變state裡面的值
+
+  //改變Search車種的值
+  handleType = event => {
+    this.setState(
+      {
+        type: event.target.value,
+      },
+      () => console.log(this.state.type)
+    )
+  }
+  //改變Search部件的值
+  handleGenre = event => {
+    this.setState(
+      {
+        genre: event.target.value,
+      },
+      () => console.log(this.state.genre)
+    )
+  }
+  //改變Search Input的值
+  handleInput = event => {
+    this.setState(
+      {
+        filter: event.target.value,
+      },
+      () => console.log(this.state.filter)
+    )
+  }
+  //點擊搜尋按鈕fetch get 的資料
+  handleSearch() {
+    // fetch('http://localhost:5000/prouductcarousel')
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     console.log(data)
+    //     this.setState({ product: data })
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //   })
   }
 
   render() {
@@ -89,7 +135,12 @@ class products extends React.Component {
             <Container className={classes.SearchSideBar}>
               <Row>
                 <Col lg={3}>
-                  <ProductsSearch />
+                  <ProductsSearch
+                    handleType={this.handleType}
+                    handleGenre={this.handleGenre}
+                    handleInput={this.handleInput}
+                    handleSearch={this.handleSearch}
+                  />
                 </Col>
                 <Col lg={9}>
                   {/* <ProductsCard product={this.state.product} /> */}

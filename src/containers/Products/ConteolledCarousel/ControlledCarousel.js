@@ -49,8 +49,8 @@ class ControlledCarousel extends React.Component {
           className={classes.Carousel}
           style={{ height: '500px' }}
         >
-          {this.state.product.map(item => (
-            <Carousel.Item style={{ textAlign: 'center' }}>
+          {this.state.product.map((item, index) => (
+            <Carousel.Item key={index} style={{ textAlign: 'center' }}>
               <Link to={`/products2/${single}`}>
                 <img
                   // className="d-block w-100  "

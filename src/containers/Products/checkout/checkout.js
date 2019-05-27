@@ -24,21 +24,18 @@ class checkout extends React.Component {
     this.state = {
       product: [],
       display: 'none',
-      cart: [],
+      cart: null,
       isChecked: false,
-      pay:[],
-      totalprice:null,
-      delivery:[],
-      id:87,
-
+      pay: [],
+      totalprice: null,
+      delivery: [],
+      id: 90,
     }
     this.handleChecked = this.handleChecked.bind(this)
   }
-  componentDidMount(){
-  
-
+  componentDidMount() {
     if (!localStorage.getItem('cart')) {
-      const cart = []
+      const cart = null
       cart.push()
       this.setState({
         cart,
@@ -52,37 +49,38 @@ class checkout extends React.Component {
       this.setState({
         cart,
       })
-    
+
       localStorage.setItem('cart', JSON.stringify(cart))
     }
 
+    if (localStorage.getItem('totalPrice')) {
+      let totalprice = 0
+      totalprice = JSON.parse(localStorage.getItem('totalPrice'))
 
-    if (localStorage.getItem('totalPrice')){
-      let totalprice=0
-      totalprice=JSON.parse(localStorage.getItem('totalPrice'))
-     
       this.setState({
         totalprice,
       })
-     
     }
-
   }
   handleChange = event => {
     if (event.target.value === '信用卡') {
       this.setState({
         display: 'block',
-        
       })
       this.setState({
-        pay:event.target.value
+        pay: event.target.value,
       })
       // var number =  document.getElementById('number');
       // const numberVal = number.value
       // console.log(numberVal)
+    } else {
+      this.setState({
+        display: 'none',
+      })
+      this.setState({
+        pay: event.target.value,
+      })
     }
-   
-     
   }
 
   handleChecked() {
@@ -90,14 +88,11 @@ class checkout extends React.Component {
   }
 
   inputNumber = event => {
-      
-      this.setState({
-        pay:["信用卡:"+event.target.value]
-      })
-      console.log(this.state)
-      
+    this.setState({
+      pay: ['信用卡:' + event.target.value],
+    })
+    console.log(this.state)
   }
-  
 
   deleteCartItem = index => {
     const cart = JSON.parse(localStorage.getItem('cart'))
@@ -110,45 +105,36 @@ class checkout extends React.Component {
     localStorage.setItem('cart', JSON.stringify(cart))
   }
 
-  PlusCartItem=()=>{
-   
-  }
+  PlusCartItem = () => {}
 
-
-  handleSend=()=>{
+  handleSend = () => {
     var obj = {
-      id:this.state.id,
-      cart:JSON.stringify(this.state.cart),
-      pay:this.state.pay,
-      totalprice:this.state.totalprice,
-
+      id: this.state.id,
+      cart: JSON.stringify(this.state.cart),
+      pay: this.state.pay,
+      totalprice: this.state.totalprice,
     }
-    console.log(this.state)
-    if(!localStorage.getItem('meber')){
-      alert("請登入會員")
-    }else{
-
+    console.log(this.state.cart)
+    if (!localStorage.getItem('meber')) {
+      alert('請登入會員')
+    } else {
       fetch('http://localhost:5000/checkout', {
         method: 'POST',
-        body:JSON.stringify(obj),
+        body: JSON.stringify(obj),
         headers: new Headers({
           Accept: 'application/json',
           'Content-Type': 'application/json',
         }),
-      });
-      alert("下單成功")
-     
+      })
+      alert('下單成功')
     }
-    
   }
 
-
   render() {
-    
-    let cart = []
+    let cart = ''
     cart = JSON.parse(localStorage.getItem('cart'))
-  
-    var txt;
+
+    var txt
     if (this.state.isChecked) {
       txt = 'block'
     } else {
@@ -156,7 +142,7 @@ class checkout extends React.Component {
     }
     // console.log(this.state.cart.quantity)
 
-    console.log(this.state)
+    console.log(this.state.cart)
 
     return (
       <>
@@ -191,38 +177,39 @@ class checkout extends React.Component {
               ))}
             </div> */}
             <Card className={classes.top}>
-          <div className="row">
-            <Col >
-            {cart.map((item, index) => (
-                <Col  style={{ padding: '20px' }}>
-                  <Card.Title style={{ marginTop: '4rem' }}>
-                    商品名:{item.p_name}
-                  </Card.Title>
-                  <Card.Img
-                    // variant="top"
-                    src={JSON.parse(item.p_photo)[0]}
-                    alt=""
-                    style={{ width: '70%' }}
-                  />
-                  <Card.Text>商品車種:{item.p_genre}</Card.Text>
-                  <Card.Text>商品品牌:{item.p_brand}</Card.Text>
-                  <Card.Text>商品說明:{item.p_description}</Card.Text>
-                  <Card.Text>數量:{item.quantity} <Button onClick={() => this.PlusCartItem()}>+</Button></Card.Text>
-                  <Card.Text><Button
-                        color="danger"
-                        onClick={() => this.deleteCartItem(index)}
-                      >
-                        刪除此商品
-                      </Button>
+              <div className="row">
+                <Col>
+                  {cart.map((item, index) => (
+                    <Col style={{ padding: '20px' }}>
+                      <Card.Title style={{ marginTop: '4rem' }}>
+                        商品名:{item.p_name}
+                      </Card.Title>
+                      <Card.Img
+                        // variant="top"
+                        src={item.p_photo}
+                        alt=""
+                        style={{ width: '70%' }}
+                      />
+                      <Card.Text>商品車種:{item.p_genre}</Card.Text>
+                      <Card.Text>商品品牌:{item.p_brand}</Card.Text>
+                      <Card.Text>商品說明:{item.p_description}</Card.Text>
+                      <Card.Text>
+                        數量:{item.quantity}{' '}
+                        <Button onClick={() => this.PlusCartItem()}>+</Button>
                       </Card.Text>
+                      <Card.Text>
+                        <Button
+                          color="danger"
+                          onClick={() => this.deleteCartItem(index)}
+                        >
+                          刪除此商品
+                        </Button>
+                      </Card.Text>
+                    </Col>
+                  ))}
                 </Col>
-              ))}
-
-
-       
-            </Col>
-          </div>
-        </Card>
+              </div>
+            </Card>
             <Form style={{ padding: '15px' }}>
               <Form.Group as={Col} md={4} controlId="formGridState">
                 <Form.Label>付款方式</Form.Label>
@@ -233,10 +220,10 @@ class checkout extends React.Component {
                   <option value="匯款">匯款</option>
                 </Form.Control>
               </Form.Group>
-              <div  style={{ display: `${this.state.display}` }}>
+              <div style={{ display: `${this.state.display}` }}>
                 <Form.Group as={Col} md={3}>
                   <Form.Label>卡號</Form.Label>
-                  <input id="number" type="text" onChange={this.inputNumber}></input>
+                  <input id="number" type="text" onChange={this.inputNumber} />
                   {/* <Form.Control /> */}
                 </Form.Group>
 
@@ -267,7 +254,6 @@ class checkout extends React.Component {
               </div>
               <div style={{ display: `${txt}` }}>
                 <Form.Group as={Col} md={4}>
-                
                   <Form.Control />
                 </Form.Group>
                 {/* <Form.Group as={Col} md={2} controlId="formGridState">
@@ -294,7 +280,12 @@ class checkout extends React.Component {
                 className={classes.checkButton}
                 style={{ justifyContent: 'flex-end' }}
               >
-                <Button className={classes.checkButton2} onClick={this.handleSend}>下訂單</Button>
+                <Button
+                  className={classes.checkButton2}
+                  onClick={this.handleSend}
+                >
+                  下訂單
+                </Button>
               </Row>
             </Container>
           </Card>

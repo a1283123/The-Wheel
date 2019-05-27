@@ -38,8 +38,8 @@ const upload = multer({ dest: 'tmp_uploads/' })
 
 var mysqlConnection = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
-  password: '',
+  user: 'wang',
+  password: 'admin',
   database: 'the_wheel',
   multipleStatements: true,
 })
@@ -87,23 +87,22 @@ app.get('/product/:id', (req, res) => {
     'SELECT * FROM prouduct WHERE p_sid = ?',
     [req.params.id],
     (err, rows, fields) => {
-      if (!err) {
-        let photos = JSON.parse(rows[0].p_photo)
-        photos = photos.map(val => {
-          return val
-        })
-        rows[0].photos = photos
+      // if (!err) {
+      //   let photos = JSON.parse(rows[0].p_photo)
+      //   photos = photos.map(val => {
+      //     return val
+      //   })
+      //   rows[0].photos = photos
 
-        console.log(photos)
-        res.send(rows[0])
-      } else console.log(err)
+      //   console.log(photos)
+      //   res.send(JSON.stringify(rows[0]))
+      // } else console.log(err)
 
-      // if (!err) res.send(rows)
-      // else console.log(err)
+      if (!err) res.send(rows)
+      else console.log(err)
     }
   )
 })
-
 
 //拿到會員商品的定單
 app.get('/orders/:id', (req, res) => {
@@ -112,7 +111,7 @@ app.get('/orders/:id', (req, res) => {
     [req.params.id],
     (err, rows, fields) => {
       if (!err) res.send(rows)
-    else console.log(err)
+      else console.log(err)
 
       // if (!err) res.send(rows)
       // else console.log(err)
@@ -120,37 +119,73 @@ app.get('/orders/:id', (req, res) => {
   )
 })
 
-
-
-
-
-
-
-
-
-
-
 //上傳訂購單資料
 
-
-
-app.post("/checkout", (req, res) => {
+app.post('/checkout', (req, res) => {
   console.log(req.body.id)
-  mysqlConnection.query((`INSERT INTO orders (id, cart, pay, delivery, totalprice) VALUES (${req.body.id}, '${req.body.cart}', '${req.body.pay}', '${req.body.delivery}', ${req.body.totalprice})`),(error, result) => {
-   
-    if(!error){
-      res.json({success: true});
-   }else{
-    console.log(error)
-   }
-  })
+  mysqlConnection.query(
+    `INSERT INTO orders (id, cart, pay, delivery, totalprice) VALUES (${
+      req.body.id
+    }, '${req.body.cart}', '${req.body.pay}', '${req.body.delivery}', ${
+      req.body.totalprice
+    })`,
+    (error, result) => {
+      if (!error) {
+        res.json({ success: true })
+      } else {
+        console.log(error)
+      }
+    }
+  )
 })
 
+//搜尋商品
 
+app.get('/search', (req, res) => {
+  //車種
+  let type = req.body.type
+  //部件
+  let genre = req.body.genre
+  //搜尋字
+  let filter = req.body.filter
+  let sql = `SELECT*FROM prouduct`
+  // let sql = `SELECT * FROM prouduct WHERE p_genre='${type}'`
+  if (type) {
+    sql = `SELECT * FROM prouduct WHERE p_genre='${type}'`
+  }
+  if (genre) {
+    sql = `SELECT * FROM prouduct WHERE p_genre2='${genre}'`
+  }
+  if (filter) {
+    sql = `SELECT * FROM prouduct WHERE p_name LIKE '%${filter}%'`
+  }
+  if (type && filter) {
+    sql = `SELECT * FROM prouduct WHERE p_genre='${type}' AND p_name LIKE '%${filter}%'`
+  }
+  if (type && genre) {
+    sql = `SELECT * FROM prouduct WHERE p_genre='${type}' AND  p_genre2='${genre}'`
+  }
+  if (genre && filter) {
+    sql = `SELECT * FROM prouduct WHERE p_genre2='${genre}' AND p_name LIKE '%${filter}%'`
+  }
 
-
+  // mysqlConnection.query(sql, (error, results, fields) => {
+  //   mysqlConnection.query(sql, (error, result) => {
+  //     if (!error) {
+  //       res.json({
+  //         data: results,
+  //       })
+  //     } else {
+  //       console.log(error)
+  //     }
+  //   })
+  // })
+  mysqlConnection.query(sql, (err, rows, fields) => {
+    if (!err) res.send(rows)
+    else console.log(err)
+  })
+})
 
 app.listen(5000, () => {
   console.log('server running')
 })
-

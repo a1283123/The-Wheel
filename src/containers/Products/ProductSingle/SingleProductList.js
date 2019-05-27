@@ -19,7 +19,7 @@ class SingleProductList extends React.Component {
   }
 
   render() {
-    console.log(this)
+    console.log(this.state)
 
     // console.log('product', a[0])
     //console.log(a[0].quantity)
@@ -32,7 +32,7 @@ class SingleProductList extends React.Component {
               <img
                 className={classes.imgSmallGroups}
                 style={{ width: '80%' }}
-                src={this.props.product.photos[0]}
+                src={this.props.product.p_photo}
                 alt=""
               />
             </Col>
@@ -40,7 +40,7 @@ class SingleProductList extends React.Component {
               <img
                 className={classes.imgSmallGroups}
                 style={{ width: '80%' }}
-                src={this.props.product.photos[0]}
+                src={this.props.product.p_photo}
                 alt=""
               />
             </Col>
@@ -65,7 +65,7 @@ class SingleProductList extends React.Component {
               <img
                 className={classes.productDescriptionImg}
                 style={{ width: '70%' }}
-                src={this.props.product.photos[0]}
+                src={this.props.product.p_photo}
                 alt=""
               />
             </Col>

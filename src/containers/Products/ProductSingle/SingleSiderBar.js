@@ -41,7 +41,7 @@ class SingleSiderBar extends React.Component {
       product: this.props.product,
       cart: [],
       quantity: 0,
-      totalPrice:0,
+      totalPrice: 0,
     }
   }
 
@@ -63,6 +63,7 @@ class SingleSiderBar extends React.Component {
     }))
   }
   addToCart = product => {
+    console.log(product)
     let quantity = this.state.quantity
     if (quantity === 0) {
       alert('請選擇數量')
@@ -252,11 +253,8 @@ class SingleSiderBar extends React.Component {
                 <td>總價</td>
                 <td />
                 <td>NT:{totalPrice}</td>
-               
               </tr>
             </Table>
-
-       
           </ModalBody>
           <ModalFooter>
             <Link to="/checkout">

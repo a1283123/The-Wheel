@@ -14,30 +14,55 @@ class ProductsSearch extends React.Component {
     return (
       <>
         <Form>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Control placeholder="搜尋" />
-            <IoIosHand />
+          <Form.Group>
+            <Form.Control
+              placeholder="搜尋"
+              onChange={this.props.handleInput}
+              id="filter"
+              name="filter"
+            />
+
             <Form.Label>車種</Form.Label>
-            <Form.Control as="select">
-              <option>公路車</option>
-              <option>特技車</option>
-              <option>單速車</option>
+            <Form.Control
+              id="type"
+              name="type"
+              as="select"
+              onChange={this.props.handleType}
+            >
+              <option selected value="null">
+                請選擇
+              </option>
+              <option value="公路車">公路車</option>
+              <option value="特技車">特技車</option>
+              <option value="單速車">單速車</option>
             </Form.Control>
           </Form.Group>
           <Form.Group>
             <Form.Label>部件</Form.Label>
-            <Form.Control as="select">
-              <option>全車</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+            <Form.Control
+              id="genre"
+              name="genre"
+              as="select"
+              onChange={this.props.handleGenre}
+            >
+              <option selected value="null">
+                請選擇
+              </option>
+              <option value="全車">全車</option>
+              <option value="車架">車架</option>
+              <option value="握把.龍頭">握把.龍頭</option>
+              <option value="坐墊.坐管">坐墊.坐管</option>
+              <option value="煞車零件">煞車零件</option>
+              <option value="鍊條">鍊條</option>
+              <option value="輪胎">輪胎</option>
+              <option value="踏板">踏板</option>
             </Form.Control>
           </Form.Group>
           <Button
             variant="primary"
             type="submit"
             className={classes.SearchButton}
+            onClick={this.props.handleSearch}
           >
             搜尋
           </Button>

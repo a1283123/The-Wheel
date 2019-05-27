@@ -12,8 +12,9 @@ import Footer from './containers/Footer/Footer'
 import { isLoading } from './store/loadingActions'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
-import orders from './containers/Products/oder/oders'
+import orders from './containers/Products/oder/orders'
 import checkout from './containers/Products/checkout/checkout'
+// import ordersCard from './containers/Products/oder/ordersCard'
 import './App.css'
 const routes = [
   // { path: '/', name: 'Home', Component: Main },
@@ -25,6 +26,7 @@ const routes = [
   { path: `/products2/:id`, Component: SingleProduct },
   { path: '/orders/:id', name: 'Contact', Component: orders },
   { path: '/checkout', name: 'Contact', Component: checkout },
+  // { path: '/ordersCard', name: 'Contact', Component: ordersCard },
 ]
 
 class App extends Component {

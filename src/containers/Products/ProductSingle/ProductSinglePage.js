@@ -19,7 +19,6 @@ class ProductSinglePage extends React.Component {
     this.state = {
       id: null,
       product: null,
-     
     }
   }
 
@@ -32,13 +31,12 @@ class ProductSinglePage extends React.Component {
       fetch(`http://localhost:5000/product/${p_sid}`)
         .then(res => res.json())
         .then(data => {
-          this.setState({ product: data })
+          this.setState({ product: data[0] })
         })
         .catch(err => {
           console.log(err)
         })
     }
-   
   }
 
   componentDidMount() {
@@ -66,9 +64,8 @@ class ProductSinglePage extends React.Component {
       list2 = <SingleSiderBar product={this.state.product} />
       list3 = <SingleProductList product={this.state.product} />
     }
-    let list4=null
+    let list4 = null
 
-    
     return (
       <>
         <Transition
