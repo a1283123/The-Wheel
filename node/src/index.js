@@ -38,8 +38,8 @@ const upload = multer({ dest: 'tmp_uploads/' })
 
 var mysqlConnection = mysql.createConnection({
   host: 'localhost',
-  user: 'wang',
-  password: 'admin',
+  user: 'root',
+  password: '',
   database: 'the_wheel',
   multipleStatements: true,
 })
@@ -141,7 +141,7 @@ app.post('/checkout', (req, res) => {
 
 //搜尋商品
 
-app.get('/search', (req, res) => {
+app.post('/search', (req, res) => {
   //車種
   let type = req.body.type
   //部件

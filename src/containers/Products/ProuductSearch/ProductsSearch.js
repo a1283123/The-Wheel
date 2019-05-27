@@ -20,6 +20,7 @@ class ProductsSearch extends React.Component {
               onChange={this.props.handleInput}
               id="filter"
               name="filter"
+              // value="null"
             />
 
             <Form.Label>車種</Form.Label>
@@ -62,7 +63,7 @@ class ProductsSearch extends React.Component {
             variant="primary"
             type="submit"
             className={classes.SearchButton}
-            onClick={this.props.handleSearch}
+            onClick={this.props.handleSearch(window.location.href)}
           >
             搜尋
           </Button>

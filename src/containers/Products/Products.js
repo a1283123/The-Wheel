@@ -66,18 +66,36 @@ class products extends React.Component {
     )
   }
   //點擊搜尋按鈕fetch get 的資料
-  handleSearch() {
-    // fetch('http://localhost:5000/prouductcarousel')
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     console.log(data)
-    //     this.setState({ product: data })
-    //   })
-    //   .catch(err => {
-    //     console.log(err)
-    //   })
+  handleSearch = props =>{
+    console.log(decodeURI(props))
+    var paramsString = props
+    var searchParams = new URLSearchParams(paramsString)
+      //抓到網址列上的車種
+     let type =  searchParams.get("type")
+      //抓到網址列上的部件    
+      let genre = searchParams.get("genre")
+      //抓到網址上的filter
+      let filter= searchParams.get("filter")
+    var obj ={
+      type:searchParams.get("type"),
+      genre: searchParams.get("genre"),
+      filter:searchParams.get("filter"),
+    }
+    fetch('http://localhost:5000/search',{
+      method:'POST',
+      body: JSON.stringify(obj)
+      }).then(res => res.json())
+      .then(data => {
+        console.log(data)
+        this.setState({ product: data })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+   
   }
 
+ 
   render() {
     let list = null
     if (this.state.product) {
