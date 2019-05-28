@@ -20,15 +20,21 @@ class products extends React.Component {
       type: null,
       genre: null,
       filter: null,
+      page: 0,
     }
   }
 
-  componentDidMount() {
-    fetch('http://localhost:5000/product')
+  componentDidMount = page => {
+    page = this.state.page
+    this.setState({ page: page + 1 })
+    fetch('http://localhost:5000/product?page=' + page)
       .then(res => res.json())
       .then(data => {
-        console.log(data)
-        this.setState({ product: data })
+        // console.log(data)
+        let products = [...this.state.product]
+        // console.log(products)
+        this.setState({ product: [...this.state.product, ...data] })
+        console.log(this.state.product)
       })
       .catch(err => {
         console.log(err)
@@ -66,36 +72,53 @@ class products extends React.Component {
     )
   }
   //點擊搜尋按鈕fetch get 的資料
-  handleSearch = props =>{
-    console.log(decodeURI(props))
-    var paramsString = props
-    var searchParams = new URLSearchParams(paramsString)
-      //抓到網址列上的車種
-     let type =  searchParams.get("type")
-      //抓到網址列上的部件    
-      let genre = searchParams.get("genre")
-      //抓到網址上的filter
-      let filter= searchParams.get("filter")
-    var obj ={
-      type:searchParams.get("type"),
-      genre: searchParams.get("genre"),
-      filter:searchParams.get("filter"),
+  handleSearch = props => {
+    //  console.log(this.state.type)
+
+    var obj = {
+      type: this.state.type,
+      genre: this.state.genre,
+      filter: this.state.filter,
     }
-    fetch('http://localhost:5000/search',{
-      method:'POST',
-      body: JSON.stringify(obj)
-      }).then(res => res.json())
+    console.log(obj)
+    fetch('http://localhost:5000/search', {
+      method: 'POST',
+      body: JSON.stringify(obj),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(res => res.json())
       .then(data => {
         console.log(data)
-        this.setState({ product: data })
+        this.setState({ product: data }, () => {
+          this.setState({
+            type: null,
+            genre: null,
+            filter: null,
+          })
+        })
       })
       .catch(err => {
         console.log(err)
       })
-   
   }
-
- 
+  handleMore = page => {
+    page = this.state.page
+    this.setState({ page: page + 1 })
+    fetch('http://localhost:5000/product?page=' + page)
+      .then(res => res.json())
+      .then(data => {
+        // console.log(data)
+        let products = [...this.state.product]
+        // console.log(products)
+        this.setState({ product: [...this.state.product, ...data] })
+        console.log(this.state.product)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
   render() {
     let list = null
     if (this.state.product) {
@@ -108,6 +131,7 @@ class products extends React.Component {
             description={item.p_description}
             price={item.p_price}
             p_sid={item.p_sid}
+            key={item.p_sid}
             // onClick={() => {
             //   this.SingleProduct(item['p_sid'])
             // }}
@@ -160,12 +184,20 @@ class products extends React.Component {
                     handleSearch={this.handleSearch}
                   />
                 </Col>
-                <Col lg={9}>
+                <Col lg={9} style={{ marginBottom: '5rem' }}>
                   {/* <ProductsCard product={this.state.product} /> */}
                   {list}
                 </Col>
               </Row>
             </Container>
+            <div
+              className={classes.MoreButton}
+              style={{ textAlign: 'center', marginBottom: '100px' }}
+            >
+              <Button className={classes.MoreButton2} onClick={this.handleMore}>
+                更多商品
+              </Button>
+            </div>
 
             {/* {this.props.children} */}
           </div>

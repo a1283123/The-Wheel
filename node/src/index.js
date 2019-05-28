@@ -38,8 +38,8 @@ const upload = multer({ dest: 'tmp_uploads/' })
 
 var mysqlConnection = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
-  password: '',
+  user: 'wang',
+  password: 'admin',
   database: 'the_wheel',
   multipleStatements: true,
 })
@@ -53,8 +53,24 @@ mysqlConnection.connect(err => {
 })
 
 //拿到所有商品資料
+// app.get('/product', (req, res) => {
+//   mysqlConnection.query('SELECT*FROM prouduct', (err, rows, fields) => {
+//     if (!err) res.send(rows)
+//     else console.log(err)
+//   })
+// })
+
 app.get('/product', (req, res) => {
-  mysqlConnection.query('SELECT*FROM prouduct', (err, rows, fields) => {
+  // let per_page = req.body.per_page //5
+  //console.log(req.query.page)
+  let page = req.query.page * 5 //1
+
+  //let per_page = 1
+  let limit = `LIMIT ${page}, 5`
+  let sql = `SELECT * FROM prouduct ` + limit
+  console.log(sql)
+
+  mysqlConnection.query(sql, (err, rows) => {
     if (!err) res.send(rows)
     else console.log(err)
   })
@@ -142,21 +158,29 @@ app.post('/checkout', (req, res) => {
 //搜尋商品
 
 app.post('/search', (req, res) => {
-  //車種
+  //車種on
   let type = req.body.type
+  // console.log(req)
   //部件
   let genre = req.body.genre
   //搜尋字
   let filter = req.body.filter
   let sql = `SELECT*FROM prouduct`
   // let sql = `SELECT * FROM prouduct WHERE p_genre='${type}'`
+  if (type === null && genre === null && filter === null) {
+    sql = `SELECT*FROM prouduct`
+  }
   if (type) {
-    sql = `SELECT * FROM prouduct WHERE p_genre='${type}'`
+    console.log('has type')
+    sql = `SELECT * FROM prouduct WHERE p_genre = '${type}'`
+    console.log(sql)
   }
   if (genre) {
+    console.log('has genre')
     sql = `SELECT * FROM prouduct WHERE p_genre2='${genre}'`
   }
   if (filter) {
+    console.log('has filter')
     sql = `SELECT * FROM prouduct WHERE p_name LIKE '%${filter}%'`
   }
   if (type && filter) {
@@ -181,8 +205,10 @@ app.post('/search', (req, res) => {
   //   })
   // })
   mysqlConnection.query(sql, (err, rows, fields) => {
+    console.log('connection:' + sql)
     if (!err) res.send(rows)
     else console.log(err)
+    console.log(res)
   })
 })
 

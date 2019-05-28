@@ -18,9 +18,9 @@
   background-color: #f52a2a;
   opacity: 0.7;
 }
-.SearchSideBar {
-  margin-top: 200px;
-}
+/* .SearchSideBar {
+  margin-top: 100px;
+} */
 
 /* 幻燈片 */
 
@@ -53,7 +53,7 @@
 
 /* 商品列表 */
 .top {
-  margin-top: 5px;
+  margin-top: 15px;
   max-width: 825px;
 }
 .Space {
@@ -75,7 +75,18 @@
   color: #fff;
   border: none;
 }
-
+.MoreButton {
+  text-align: center;
+  margin-bottom: 3rem;
+  /* width: 3rem; */
+}
+.MoreButton2 {
+  background-color: #f52a2a;
+  color: black;
+  border: none;
+  width: 10rem;
+  height: 3rem;
+}
 /* 商品細項 */
 .ProductsHight {
   height: 400px;

@@ -30,7 +30,7 @@ class ProductsSearch extends React.Component {
               as="select"
               onChange={this.props.handleType}
             >
-              <option selected value="null">
+              <option selected value="">
                 請選擇
               </option>
               <option value="公路車">公路車</option>
@@ -46,7 +46,7 @@ class ProductsSearch extends React.Component {
               as="select"
               onChange={this.props.handleGenre}
             >
-              <option selected value="null">
+              <option selected value="">
                 請選擇
               </option>
               <option value="全車">全車</option>
@@ -61,9 +61,9 @@ class ProductsSearch extends React.Component {
           </Form.Group>
           <Button
             variant="primary"
-            type="submit"
+            type="button"
             className={classes.SearchButton}
-            onClick={this.props.handleSearch(window.location.href)}
+            onClick={this.props.handleSearch}
           >
             搜尋
           </Button>
