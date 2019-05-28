@@ -111,6 +111,53 @@ class SingleSiderBar extends React.Component {
     })
     localStorage.setItem('cart', JSON.stringify(cart))
   }
+
+   handleBuy=()=>{
+    let cart = [this.state.product]
+
+    let totalPrice = 0
+     localStorage.setItem('cart',JSON.stringify(cart))
+     let quantity = this.state.quantity
+     if (quantity === 0) {
+      alert('請選擇數量')
+    } else {
+      if (!localStorage.getItem('cart')) {
+        const cart = []
+        const item = Object.assign(cart, { quantity })
+        cart.push(item)
+        this.setState({
+          cart,
+        })
+
+        localStorage.setItem('cart', JSON.stringify(cart))
+        console.log(this.state)
+      } else {
+        const cart = JSON.parse(localStorage.getItem('cart'))
+        const item = Object.assign({}, cart, { quantity })
+        cart.push(item)
+        this.setState({
+          cart,
+        })
+
+        localStorage.setItem('cart', JSON.stringify(cart))
+      }
+    }
+   
+     
+      cart = JSON.parse(localStorage.getItem('cart'))
+        console.log( cart)
+        cart.forEach(item => {
+        console.log(item.p_price)
+        let sum = item.quantity * Number(item.p_price)
+        return (totalPrice += sum)
+      })
+    
+      localStorage.setItem('totalPrice', JSON.stringify(totalPrice))
+    
+
+  }
+
+
   render() {
     const { show, product } = this.state
 
@@ -118,16 +165,16 @@ class SingleSiderBar extends React.Component {
     let cart = []
     if (localStorage.getItem('cart')) {
       cart = JSON.parse(localStorage.getItem('cart'))
-
+        console.log(cart)
       cart.forEach(item => {
         console.log(item.p_price)
         let sum = item.quantity * Number(item.p_price)
         return (totalPrice += sum)
       })
-      // this.setState({
-      //   totalPrice:{totalPrice}
-      // })
+    
       localStorage.setItem('totalPrice', JSON.stringify(totalPrice))
+    }else{
+      console.log(123)
     }
 
     return (
@@ -195,9 +242,15 @@ class SingleSiderBar extends React.Component {
             </Col>
             <Col className={classes.productSideBarButtonControl} md={4}>
               <div>
-                <Button className={classes.productSideBarButton}>
+                <Link 
+                  to={{
+                    pathname: `/checkout`,
+                  }}
+                >
+                <Button className={classes.productSideBarButton} onClick={this.handleBuy}>
                   直接購買
                 </Button>
+                </Link>
               </div>
               <div>
                 <Button
@@ -258,7 +311,7 @@ class SingleSiderBar extends React.Component {
           </ModalBody>
           <ModalFooter>
             <Link to="/checkout">
-              <Button color="primary">結帳</Button>
+              <Button color="primary" >結帳</Button>
             </Link>
             <Button color="secondary" onClick={this.toggle}>
               取消

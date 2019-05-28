@@ -8,13 +8,6 @@ import ReactDOM from 'react-dom'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { Carousel } from 'react-responsive-carousel'
 
-// import { TweenMax } from 'gsap/all'
-// import { Transition } from 'react-transition-group'
-// import ContentPage from '../ContentPage/ContentPage'
-
-// import { IoIosCart } from 'react-icons/io'
-// import ControlledCarousel from './ControlledCarousel'
-// import { IoIosHand } from 'react-icons/io'
 
 class SingleImg extends React.Component {
   constructor(props) {
