@@ -59,12 +59,13 @@ class ProductSinglePage extends React.Component {
   render() {
     let list2 = null
     let list3 = null
+    let list4 = null
     if (this.state.product) {
       console.log(this.state.product)
       list2 = <SingleSiderBar product={this.state.product} />
       list3 = <SingleProductList product={this.state.product} />
+      list4 = <SingleImg product={this.state.product} />
     }
-    let list4 = null
 
     return (
       <>
@@ -83,14 +84,14 @@ class ProductSinglePage extends React.Component {
         >
           <div>
             {/* <div style={{ height: '100vh' }}> */}
-            <div>
-              <SingleImg />
-
-              <Button className={classes.productButton}>
-                <IoIosHeart size={25} />
-                加入收藏
-              </Button>
+            <div style={{ marginTop: '200px', textAlign: '-webkit-center' }}>
+              {list4}
             </div>
+            <Button className={classes.productButton}>
+              <IoIosHeart size={25} />
+              加入收藏
+            </Button>
+
             {/* <SingleSiderBar /> */}
             {list2}
             {/* </div> */}

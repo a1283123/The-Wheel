@@ -284,7 +284,6 @@ class SingleSiderBar extends React.Component {
                 </Col>
               </Row>
             </Container>
-
             <Row className="show-grid">
               <Col xs={1} md={2}>
                 <p>#</p>

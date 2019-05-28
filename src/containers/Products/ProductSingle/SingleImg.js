@@ -19,73 +19,33 @@ import { Carousel } from 'react-responsive-carousel'
 class SingleImg extends React.Component {
   constructor(props) {
     super(props)
-    // const product = this.props.product
+
     this.state = {}
   }
   render() {
-    // const a = this.props.product
-    // console.log('product', a[0])
-    //console.log(a[0].quantity)
-
+    console.log(this.props.p_photo)
     return (
       <>
-        <Carousel>
-          <div>
-            <img src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png" />
-            <p className="legend">Legend 1</p>
+        <Carousel
+          autoPlay
+          showIndicators={false}
+          showStatus={false}
+          width="40rem"
+          interval="4000"
+        >
+          <div style={{ backgroundColor: 'white' }}>
+            <img src={this.props.product.p_photo} />
+            {/* <p className="legend">Legend 1</p> */}
           </div>
-          <div>
-            <img src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png" />
-            <p className="legend">Legend 2</p>
+          <div style={{ backgroundColor: 'white' }}>
+            <img src={this.props.product.p_photo2} />
+            {/* <p className="legend">Legend 2</p> */}
           </div>
-          <div>
-            <img src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png" />
-            <p className="legend">Legend 3</p>
+          <div style={{ backgroundColor: 'white' }}>
+            <img src={this.props.product.p_photo3} />
+            {/* <p className="legend">Legend 3</p> */}
           </div>
         </Carousel>
-        {/* <Container>
-          <Row>
-            <Col sm={10}>
-              <div className={classes.imgGruops}>
-                <img
-                  // className="d-block w-100 "
-                  className={classes.ProductsHight}
-                  src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png"
-                  alt=""
-                />
-              </div>
-            </Col>
-
-            <Col sm={2}>
-              <div className={classes.imgSmallGroups2}>
-                <img
-                  className={classes.imgSmallGroups}
-                  style={{ width: '90%' }}
-                  src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png"
-                  alt=""
-                />
-                <img
-                  className={classes.imgSmallGroups}
-                  style={{ width: '90%' }}
-                  src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png"
-                  alt=""
-                />
-                <img
-                  className={classes.imgSmallGroups}
-                  style={{ width: '90%' }}
-                  src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png"
-                  alt=""
-                />
-                <img
-                  className={classes.imgSmallGroups}
-                  style={{ width: '90%' }}
-                  src="http://www.sportslab.com.tw/image/member/album/resize/623/629/1504596555497.png"
-                  alt=""
-                />
-              </div>
-            </Col>
-          </Row>
-        </Container> */}
       </>
     )
   }

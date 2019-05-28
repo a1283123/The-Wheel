@@ -188,7 +188,7 @@ class checkout extends React.Component {
                         // variant="top"
                         src={item.p_photo}
                         alt=""
-                        style={{ width: '70%' }}
+                        style={{ width: '40%' }}
                       />
                       <Card.Text>商品車種:{item.p_genre}</Card.Text>
                       <Card.Text>商品品牌:{item.p_brand}</Card.Text>
